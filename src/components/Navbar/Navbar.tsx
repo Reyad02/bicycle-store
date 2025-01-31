@@ -2,6 +2,26 @@ import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import blackclr from "@/assets/B_rcelle__1_-removebg-preview.png";
 
+interface ICustomNavLink {
+  to: string;
+  children: string;
+}
+
+const CustomNavLink = ({ to, children }: ICustomNavLink) => {
+  return (
+    <NavLink
+      to={to}
+      style={({ isActive }) => ({
+        color: isActive ? "#0BBA48" : "#1C1C1C",
+        backgroundColor: "transparent",
+        fontWeight: isActive ? "bold" : "normal",
+      })}
+      className="text-base hover:border-b-2 border-[#0BBA48] rounded-none	 "
+    >
+      {children}
+    </NavLink>
+  );
+};
 const Navbar = () => {
   return (
     <div>
@@ -26,13 +46,13 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <NavLink to={"/"}>Home</NavLink>
+                <CustomNavLink to="/">Home</CustomNavLink>
               </li>
               <li>
-                <NavLink to={"/about"}>About</NavLink>
+                <CustomNavLink to="/about">About</CustomNavLink>
               </li>
             </ul>
           </div>
@@ -44,28 +64,10 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <NavLink
-                to={"/"}
-                style={({ isActive }) => ({
-                  color: isActive ? "#0BBA48" : "#1C1C1C",
-                  backgroundColor: "transparent",
-                  fontWeight: isActive ? "bold" : "normal",
-                })}
-              >
-                Home
-              </NavLink>
+              <CustomNavLink to="/">Home</CustomNavLink>
             </li>
             <li>
-              <NavLink
-                to={"/about"}
-                style={({ isActive }) => ({
-                  color: isActive ? "#0BBA48" : "#1C1C1C",
-                  backgroundColor: "transparent",
-                  fontWeight: isActive ? "bold" : "normal",
-                })}
-              >
-                About
-              </NavLink>
+              <CustomNavLink to="/about">About</CustomNavLink>
             </li>
           </ul>
         </div>

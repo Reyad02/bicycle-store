@@ -1,7 +1,7 @@
-import Customer_Layout from "@/components/Layout/Customer_Layout";
-import About from "@/pages/About/About";
-import Home from "@/pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
+import Customer_Layout from "../components/Layout/Customer_Layout";
+import About from "../pages/About/About";
+import Home from "../pages/Home/Home";
 
 const router = createBrowserRouter([
   {
