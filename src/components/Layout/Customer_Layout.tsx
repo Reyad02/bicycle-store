@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 const Customer_Layout = () => {
   return (
     <div>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto bg-white">
         <Navbar />
       </div>
       <Outlet></Outlet>
