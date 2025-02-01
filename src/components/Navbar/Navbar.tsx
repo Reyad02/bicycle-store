@@ -1,13 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import blackclr from "@/assets/B_rcelle__1_-removebg-preview.png";
+import { useState } from "react";
 
 interface ICustomNavLink {
   to: string;
   children: string;
+  onClick?: () => void;
 }
 
-const CustomNavLink = ({ to, children }: ICustomNavLink) => {
+const CustomNavLink = ({ to, children, onClick }: ICustomNavLink) => {
   return (
     <NavLink
       to={to}
@@ -16,19 +18,30 @@ const CustomNavLink = ({ to, children }: ICustomNavLink) => {
         backgroundColor: "transparent",
         fontWeight: isActive ? "bold" : "normal",
       })}
-      className="text-base hover:border-b-2 border-[#0BBA48] rounded-none	 "
+      className="text-base lg:hover:border-b-2 border-[#0BBA48] rounded-none	 "
+      onClick={onClick}
     >
       {children}
     </NavLink>
   );
 };
 const Navbar = () => {
+  const [isDropDown, setIsDropDown] = useState(false);
+
+  const closeDropdown = () => {
+    setIsDropDown(false);
+  };
   return (
     <div>
       <div className="navbar bg-white">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden"
+              onClick={() => setIsDropDown(!isDropDown)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -44,17 +57,24 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <CustomNavLink to="/">Home</CustomNavLink>
-              </li>
-              <li>
-                <CustomNavLink to="/about">About</CustomNavLink>
-              </li>
-            </ul>
+
+            {isDropDown && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <CustomNavLink to="/" onClick={closeDropdown}>
+                    Home
+                  </CustomNavLink>
+                </li>
+                <li>
+                  <CustomNavLink to="/about" onClick={closeDropdown}>
+                    About
+                  </CustomNavLink>
+                </li>
+              </ul>
+            )}
           </div>
           <Link to={"/"}>
             {" "}
