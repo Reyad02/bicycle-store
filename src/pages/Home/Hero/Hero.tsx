@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 import { useEffect, useState } from "react";
 
 interface ISwiperSlide {
@@ -30,10 +30,10 @@ const SwiperSlideContent = ({
 
 const Hero = () => {
   const [isNotMobile, setIsNotMobile] = useState(false);
-  
+
   useEffect(() => {
     const handleResize = () => {
-      setIsNotMobile(window.innerWidth > 768); 
+      setIsNotMobile(window.innerWidth > 768);
     };
 
     handleResize();

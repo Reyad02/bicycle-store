@@ -1,4 +1,4 @@
-import Section_Heading from "../Section_Heading/Section_Heading";
+import Section_Heading from "../../../components/Section_Heading/Section_Heading";
 import { FaBicycle } from "react-icons/fa6";
 import { IoBicycle } from "react-icons/io5";
 import { IoRocketOutline } from "react-icons/io5";
@@ -7,15 +7,29 @@ import { MdMiscellaneousServices } from "react-icons/md";
 interface IAboutCardProps {
   title: string;
   description: string;
-  Icon: React.ElementType;
+  Icon?: React.ElementType;
+  imgUrl?: string;
 }
 
-const About_Card = ({ title, description, Icon }: IAboutCardProps) => {
+export const About_Card = ({
+  title,
+  description,
+  Icon,
+  imgUrl,
+}: IAboutCardProps) => {
   return (
     <>
-      <div className="text-6xl text-[#0BBA48]">
-        <Icon />
-      </div>
+      {Icon && (
+        <div className="text-6xl text-[#0BBA48]">
+          <Icon />
+        </div>
+      )}
+      {imgUrl && (
+        <div className="text-6xl text-[#0BBA48]">
+          <img src={imgUrl} alt="" className="w-20 h-20 object-cover rounded-full" />
+        </div>
+      )}
+
       <h1 className="text-xl font-semibold">{title}</h1>
       <p className="text-[#555555]">{description}</p>
     </>
