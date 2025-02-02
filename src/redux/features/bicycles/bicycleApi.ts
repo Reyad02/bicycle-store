@@ -25,7 +25,21 @@ const bicycleApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleBicycle: builder.query({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
+          method: "GET",
+        };
+      },
+      transformResponse: (response: TResponseRedux<IBicycle[]>) => {
+        return {
+          data: response.data,
+          meta: response.metaData,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllBicyclesQuery } = bicycleApi;
+export const { useGetAllBicyclesQuery, useGetSingleBicycleQuery } = bicycleApi;

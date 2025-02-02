@@ -69,6 +69,9 @@ const Navbar = () => {
                   </CustomNavLink>
                 </li>
                 <li>
+                  <CustomNavLink to="/products" onClick={closeDropdown}>Products</CustomNavLink>
+                </li>
+                <li>
                   <CustomNavLink to="/about" onClick={closeDropdown}>
                     About
                   </CustomNavLink>
@@ -85,6 +88,9 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <CustomNavLink to="/">Home</CustomNavLink>
+            </li>
+            <li>
+              <CustomNavLink to="/products">Products</CustomNavLink>
             </li>
             <li>
               <CustomNavLink to="/about">About</CustomNavLink>

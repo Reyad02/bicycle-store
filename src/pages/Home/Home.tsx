@@ -5,7 +5,6 @@ import Shining_images_part from "../../components/Shining_images_part/Shining_im
 import { Button } from "../../components/ui/button";
 import { useGetAllBicyclesQuery } from "../../redux/features/bicycles/bicycleApi";
 import Marquee from "react-fast-marquee";
-import Footer from "./Footer/Footer";
 import ScrollToTop from "react-scroll-to-top";
 
 const Home = () => {
@@ -112,7 +111,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto py-20 ">
           <div className="grid grid-cols-1 gap-16 md:gap-8 px-8  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-4 ">
             {products?.data!.map(({ _id, name, brand, type, price, image }) => (
-              <div key={_id} className="card card-compact  shadow-xl ">
+              <div key={_id} className="card card-compact shadow-xl ">
                 <figure className="">
                   <img
                     src={
@@ -204,7 +203,6 @@ const Home = () => {
         </div>
       </div>
 
-      <Footer></Footer>
     </>
   );
 };
