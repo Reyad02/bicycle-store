@@ -6,10 +6,13 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { jwtDecode } from "jwt-decode";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";
 import { FieldValues } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOrderFrom = async (data: FieldValues) => {
     try {
@@ -18,6 +21,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       const { email, role, iat, exp }: TUser = jwtDecode(token);
       dispatch(setUser({ user: { email, role, iat, exp }, token: token }));
+      navigate(location?.state ? location?.state : "/products");
     } catch (err) {
       console.log(err);
     }

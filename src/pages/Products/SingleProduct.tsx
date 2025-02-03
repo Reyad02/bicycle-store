@@ -22,11 +22,14 @@ const SingleProduct = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOrderFrom = (data: any) => {
-    console.log(data);
+    // console.log(data);
     dispatch(
       addToCart({
         id: product?.data?._id as string,
         quantity: data.quantity,
+        name: product?.data?.name as string,
+        unitPrice: product?.data?.price as number,
+        // totalPrice: 
       })
     );
   };
