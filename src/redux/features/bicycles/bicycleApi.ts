@@ -32,10 +32,10 @@ const bicycleApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      transformResponse: (response: TResponseRedux<IBicycle[]>) => {
+      transformResponse: (response: TResponseRedux<IBicycle>) => {
         return {
           data: response.data,
-          meta: response.metaData,
+          meta: response?.metaData,
         };
       },
     }),
