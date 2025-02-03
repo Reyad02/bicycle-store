@@ -14,7 +14,6 @@ const PayFrom = ({ onSubmit, children }: ICustomForm) => {
   const methods = useForm();
   const submit: SubmitHandler<FieldValues> = (data) => {
     onSubmit(data);
-    console.log(data);
     methods.reset();
   };
   return (
