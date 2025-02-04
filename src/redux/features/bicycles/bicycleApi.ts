@@ -39,7 +39,20 @@ const bicycleApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getBicycleBrands: builder.query({
+      query: () => {
+        return {
+          url: "/products/getBrands",
+          method: "GET",
+        };
+      },
+      transformResponse: (response: TResponseRedux<string[]>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllBicyclesQuery, useGetSingleBicycleQuery } = bicycleApi;
+export const { useGetAllBicyclesQuery, useGetSingleBicycleQuery, useGetBicycleBrandsQuery } = bicycleApi;
