@@ -18,6 +18,7 @@ const bicycleApi = baseApi.injectEndpoints({
           params,
         };
       },
+      providesTags: ["bicycles"],
       transformResponse: (response: TResponseRedux<IBicycle[]>) => {
         return {
           data: response.data,
@@ -32,6 +33,7 @@ const bicycleApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["bicycles"],
       transformResponse: (response: TResponseRedux<IBicycle>) => {
         return {
           data: response.data,
@@ -46,6 +48,7 @@ const bicycleApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["bicycles"],
       transformResponse: (response: TResponseRedux<string[]>) => {
         return {
           data: response.data,
@@ -55,4 +58,8 @@ const bicycleApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllBicyclesQuery, useGetSingleBicycleQuery, useGetBicycleBrandsQuery } = bicycleApi;
+export const {
+  useGetAllBicyclesQuery,
+  useGetSingleBicycleQuery,
+  useGetBicycleBrandsQuery,
+} = bicycleApi;

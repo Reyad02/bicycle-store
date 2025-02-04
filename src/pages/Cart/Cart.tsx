@@ -8,6 +8,9 @@ import {
 } from "../../redux/features/cart/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useMakeOrderMutation } from "../../redux/features/order/orderApi";
+import { ToastContainer, toast } from "react-toastify";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { IError } from "../../types/error.type";
 
 const Cart = () => {
   const itemsInCart = useSelector((state: RootState) => state?.cart?.items);
@@ -44,7 +47,25 @@ const Cart = () => {
       })),
     };
 
+    const isFetchBaseQueryError = (
+      error: unknown
+    ): error is FetchBaseQueryError => {
+      return typeof error === "object" && error !== null && "data" in error;
+    };
+
     const res = await makeOrder(payload);
+    if (isFetchBaseQueryError(res?.error)) {
+      toast.error(`${(res?.error?.data as IError)?.message}`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
     const paymentUrl = res?.data?.data?.response?.GatewayPageURL;
     // const orderId = res?.data?.data?.insertedOrder?._id;
 
@@ -59,6 +80,7 @@ const Cart = () => {
 
   return (
     <div className="bg-[#F5F5F5]">
+      <ToastContainer />
       {itemsInCart.length > 0 ? (
         <div className="flex flex-col max-w-7xl py-6  mx-auto">
           <div className="overflow-x-auto">

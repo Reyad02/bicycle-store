@@ -7,6 +7,9 @@ import { jwtDecode } from "jwt-decode";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";
 import { FieldValues } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { IError } from "../../types/error.type";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [login] = useLoginMutation();
@@ -14,9 +17,27 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isFetchBaseQueryError = (
+    error: unknown
+  ): error is FetchBaseQueryError => {
+    return typeof error === "object" && error !== null && "data" in error;
+  };
+
   const handleOrderFrom = async (data: FieldValues) => {
     try {
       const res = await login(data);
+      if (isFetchBaseQueryError(res?.error)) {
+        toast.error(`${(res?.error?.data as IError)?.message}`, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
       const token = res?.data?.data?.token;
       localStorage.setItem("token", token);
       const { email, role, iat, exp }: TUser = jwtDecode(token);
@@ -36,6 +57,7 @@ const Login = () => {
   };
   return (
     <div className="py-20 flex max-w-7xl mx-auto justify-between items-center">
+      <ToastContainer/>
       <div className="md:w-[40%] mx-auto border p-8">
         <PayFrom onSubmit={handleOrderFrom}>
           <PayInput

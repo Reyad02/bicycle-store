@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/button";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const SingleProduct = () => {
 
   const dispatch = useDispatch();
 
+  console.log(product);
   useEffect(() => {
     if (Number(product?.data?.quantity) <= 0) {
       setDisableBtn(true);
@@ -23,20 +25,45 @@ const SingleProduct = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOrderFrom = (data: any) => {
     // console.log(data);
-    dispatch(
-      addToCart({
-        id: product?.data?._id as string,
-        quantity: data.quantity,
-        name: product?.data?.name as string,
-        unitPrice: product?.data?.price as number,
-        // totalPrice: 
-      })
-    );
+    if (data.quantity > 0 && data.quantity <= product!.data!.quantity) {
+      dispatch(
+        addToCart({
+          id: product?.data?._id as string,
+          quantity: data.quantity,
+          name: product?.data?.name as string,
+          unitPrice: product?.data?.price as number,
+        })
+      );
+    } else if (data.quantity < 0) {
+      toast.error("Quantity can not be negative", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } 
+    else {
+      toast.error(`Quantity can not be more than ${product?.data?.quantity}`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   return (
     <div className="bg-[#F5F5F5]">
       <div className="max-w-7xl mx-auto py-20">
+        <ToastContainer />
         <div className="flex justify-between flex-col md:flex-row px-2 lg:px-0">
           <div className="md:w-[58%] flex flex-col gap-8">
             <div>
@@ -64,6 +91,7 @@ const SingleProduct = () => {
                 <p>Name: {product?.data?.name}</p>
                 <p>Brand: {product?.data?.brand}</p>
                 <p>Type: {product?.data?.type}</p>
+                <p>Available Quantity: {product?.data?.quantity}</p>
                 {Number(product?.data?.quantity) <= 0 && (
                   <div className="badge badge-error text-black">
                     Out Of Stock
