@@ -8,6 +8,8 @@ import Login from "../pages/Login/Login";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
+import Payment_Success from "../pages/Payment_Success/Payment_Success";
+import Payment_Failed from "../pages/Payment_Failed/Payment_Failed";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/orders/success",
+        element: <Payment_Success />,
+      },
+      {
+        path: "/orders/fail",
+        element: <Payment_Failed />,
       },
       {
         path: "/checkout",

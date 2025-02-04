@@ -17,11 +17,19 @@ const Login = () => {
   const handleOrderFrom = async (data: FieldValues) => {
     try {
       const res = await login(data);
-      const token = res?.data?.data;
+      const token = res?.data?.data?.token;
       localStorage.setItem("token", token);
       const { email, role, iat, exp }: TUser = jwtDecode(token);
-      dispatch(setUser({ user: { email, role, iat, exp }, token: token }));
-      navigate(location?.state ? location?.state : "/products");
+      dispatch(
+        setUser({
+          user: { email, role, iat, exp },
+          token: token,
+          userId: res?.data?.data?.isUserExist?._id,
+        })
+      );
+      navigate(location.state?.from || "/products", {
+        replace: true,
+      });
     } catch (err) {
       console.log(err);
     }
