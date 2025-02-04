@@ -6,7 +6,6 @@ import Products from "../pages/Products/Products";
 import SingleProduct from "../pages/Products/SingleProduct";
 import Login from "../pages/Login/Login";
 import Cart from "../pages/Cart/Cart";
-import Checkout from "../pages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import Payment_Success from "../pages/Payment_Success/Payment_Success";
 import Payment_Failed from "../pages/Payment_Failed/Payment_Failed";
@@ -42,17 +41,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/orders/success",
-        element: <Payment_Success />,
+        element: (
+          <PrivateRoute>
+            <Payment_Success />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/orders/fail",
-        element: <Payment_Failed />,
-      },
-      {
-        path: "/checkout",
         element: (
           <PrivateRoute>
-            <Checkout />
+            <Payment_Failed />
           </PrivateRoute>
         ),
       },

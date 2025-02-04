@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { removeAllFromCart } from "../../redux/features/cart/cartSlice";
 
 const Payment_Success = () => {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(5);
+  const dispatch = useDispatch();
+
+  dispatch(removeAllFromCart());
 
   useEffect(() => {
     const interval = setInterval(() => {

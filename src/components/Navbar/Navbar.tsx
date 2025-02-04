@@ -3,8 +3,9 @@ import { Button } from "../ui/button";
 import blackclr from "@/assets/B_rcelle__1_-removebg-preview.png";
 import { useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { logout } from "../../redux/features/auth/authSlice";
 
 interface ICustomNavLink {
   to: string;
@@ -31,9 +32,16 @@ const CustomNavLink = ({ to, children, onClick }: ICustomNavLink) => {
 const Navbar = () => {
   const [isDropDown, setIsDropDown] = useState(false);
   const itemsInCart = useSelector((state: RootState) => state?.cart?.items);
+  const userEmail = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch();
 
   const closeDropdown = () => {
     setIsDropDown(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    dispatch(logout());
   };
   return (
     <div>
@@ -107,18 +115,29 @@ const Navbar = () => {
           <Link to={"/cart"} className="text-3xl text-[#0BBA48] font-bold ">
             <div className="relative">
               <CiShoppingCart></CiShoppingCart>
-              <div className="absolute top-0 right-0 text-xs">
-                <div className="badge badge-secondary p-0 px-1 text-xs bg-red-500 text-white">
-                  {itemsInCart?.length}
+              {itemsInCart?.length > 0 && (
+                <div className="absolute top-0 right-0 text-xs">
+                  <div className="badge badge-secondary p-0 px-1 text-xs bg-red-500 text-white">
+                    {itemsInCart?.length}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </Link>
-          <Link to={"/login"}>
-            <Button className="bg-[#0BBA48] text-white w-fit mt-2">
-              Login
+          {userEmail ? (
+            <Button
+              onClick={() => handleLogout()}
+              className="bg-[#0BBA48] text-white w-fit mt-2"
+            >
+              Logout
             </Button>
-          </Link>
+          ) : (
+            <Link to={"/login"}>
+              <Button className="bg-[#0BBA48] text-white w-fit mt-2">
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
