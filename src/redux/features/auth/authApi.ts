@@ -10,6 +10,7 @@ const bicycleApi = baseApi.injectEndpoints({
           body: args,
         };
       },
+      invalidatesTags: ["my_order"],
     }),
   }),
 });

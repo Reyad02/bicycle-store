@@ -6,6 +6,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { logout } from "../../redux/features/auth/authSlice";
+import { CiUser } from "react-icons/ci";
 
 interface ICustomNavLink {
   to: string;
@@ -124,13 +125,19 @@ const Navbar = () => {
               )}
             </div>
           </Link>
+
           {userEmail ? (
-            <Button
-              onClick={() => handleLogout()}
-              className="bg-[#0BBA48] text-white w-fit mt-2"
-            >
-              Logout
-            </Button>
+            <>
+              <Link to={`/my-account`} className="text-3xl text-[#0BBA48] font-bold ">
+                <CiUser></CiUser>
+              </Link>
+              <Button
+                onClick={() => handleLogout()}
+                className="bg-[#0BBA48] text-white w-fit mt-2"
+              >
+                Logout
+              </Button>
+            </>
           ) : (
             <Link to={"/login"}>
               <Button className="bg-[#0BBA48] text-white w-fit mt-2">

@@ -10,19 +10,18 @@ const orderApi = baseApi.injectEndpoints({
           body: args,
         };
       },
+      invalidatesTags: ["my_order"],
     }),
-    // paymentSuccess: builder.mutation({
-    //   query: (args) => {
-    //     const params = new URLSearchParams();
-
-    //     return {
-    //       url: "/orders/success",
-    //       method: "POST",
-    //     //   body: args,
-    //     };
-    //   },
-    // }),
+    myOrders: builder.query({
+      query: () => {
+        return {
+          url: `/orders/myOrder`,
+          method: "GET",
+        };
+      },
+      providesTags: ["my_order"],
+    }),
   }),
 });
 
-export const { useMakeOrderMutation } = orderApi;
+export const { useMakeOrderMutation, useMyOrdersQuery } = orderApi;

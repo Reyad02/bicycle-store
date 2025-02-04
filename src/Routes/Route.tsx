@@ -9,6 +9,7 @@ import Cart from "../pages/Cart/Cart";
 import PrivateRoute from "./PrivateRoute";
 import Payment_Success from "../pages/Payment_Success/Payment_Success";
 import Payment_Failed from "../pages/Payment_Failed/Payment_Failed";
+import MyOrders from "../pages/MyOrders/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Payment_Failed />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-account",
+        element: (
+          <PrivateRoute>
+            <MyOrders />
           </PrivateRoute>
         ),
       },
