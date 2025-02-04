@@ -67,8 +67,11 @@ const MyOrders = () => {
       });
     });
   }
+  const totalOrderPrice = dataTransform.reduce(
+    (sum, order) => sum + order.currentBicycleTotalPrice,
+    0
+  );
 
-  console.log(dataTransform);
   return (
     orders?.data?.length > 0 && (
       <div className="bg-[#F5F5F5]">
@@ -98,6 +101,13 @@ const MyOrders = () => {
                       <td>${bicycle.currentBicycleTotalPrice}</td>
                     </tr>
                   ))}
+                  <tr className=" text-base text-black text-center font-semibold text-lg">
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>${totalOrderPrice}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

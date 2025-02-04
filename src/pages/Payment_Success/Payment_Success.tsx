@@ -16,7 +16,7 @@ const Payment_Success = () => {
     }, 1000);
 
     const timer = setTimeout(() => {
-      navigate("/products");
+      navigate("/my-account");
     }, 5000);
 
     return () => {
