@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/button";
 import { useGetAllBicyclesQuery } from "../../redux/features/bicycles/bicycleApi";
 import Marquee from "react-fast-marquee";
 import ScrollToTop from "react-scroll-to-top";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { data: products } = useGetAllBicyclesQuery([
@@ -137,9 +138,11 @@ const Home = () => {
                     Price:{" "}
                     <span className="text-black font-semibold">${price}</span>
                   </p>
-                  <Button className="bg-[#0BBA48] btn-sm text-sm text-white md:py-6 md:px-8">
-                    LEARN MORE
-                  </Button>{" "}
+                  <Link to={`/products/${_id}`} className="">
+                    <Button className="bg-[#0BBA48] btn-sm w-full text-sm text-white md:py-6 md:px-8">
+                      LEARN MORE
+                    </Button>{" "}
+                  </Link>
                 </div>
               </div>
             ))}
@@ -202,7 +205,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };
