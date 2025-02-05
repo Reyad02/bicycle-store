@@ -6,6 +6,7 @@ import {
 } from "../../redux/features/bicycles/bicycleApi";
 import { Checkbox } from "../../components/ui/checkbox";
 import { useEffect, useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Products = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -45,7 +46,7 @@ const Products = () => {
   return (
     <div className="bg-[#F5F5F5]">
       <div className="max-w-7xl mx-auto pb-20 pt-6">
-        <div className="mb-6">
+        <div className="mb-6 px-2 lg:px-0">
           {/* search bar  */}
           <label className="input input-bordered flex items-center gap-2 bg-transparent border border-stone-600">
             <input
@@ -71,7 +72,7 @@ const Products = () => {
           </label>
         </div>
 
-        <div className=" flex gap-4 ">
+        <div className=" flex lg:gap-4 ">
           {/* sidebar section  */}
           <div className="drawer lg:drawer-open w-[20%] lg:border  ">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -79,64 +80,66 @@ const Products = () => {
               {/* Page content here */}
               <label
                 htmlFor="my-drawer-2"
-                className="btn btn-primary drawer-button lg:hidden"
+                className="btn bg-[#0BBA48] text-white border-none outline-none drawer-button lg:hidden "
               >
-                Open drawer
+                <GiHamburgerMenu />
               </label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side z-50">
               <label
                 htmlFor="my-drawer-2"
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
 
-              {/* brand  */}
-              <ul className="menu items-center  min-w-full text-black p-4">
-                <div>
-                  <h1 className="font-semibold text-xl mb-4">Brands</h1>
-                  <div className="flex flex-col gap-2">
-                    {brands?.data?.map((brand: string, idx: number) => (
-                      <div key={idx} className="flex items-center gap-4 ">
-                        <Checkbox
-                          id={brand}
-                          onCheckedChange={() => handleBrandChange(brand)}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor={brand}
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            {brand}
-                          </label>
+              <div className="bg-slate-100 lg:bg-transparent h-full w">
+                {/* brand  */}
+                <ul className="menu items-center min-w-full text-black p-4 ">
+                  <div>
+                    <h1 className="font-semibold text-xl mb-4">Brands</h1>
+                    <div className="flex flex-col gap-2">
+                      {brands?.data?.map((brand: string, idx: number) => (
+                        <div key={idx} className="flex items-center gap-4 ">
+                          <Checkbox
+                            id={brand}
+                            onCheckedChange={() => handleBrandChange(brand)}
+                          />
+                          <div className="grid gap-1.5 leading-none">
+                            <label
+                              htmlFor={brand}
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              {brand}
+                            </label>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
+                </ul>
+
+                {/* dropdown  */}
+                <div className="p-4">
+                  <h1 className="font-semibold text-xl mb-2">Sort by Price</h1>
+
+                  <select
+                    className="bg-transparent border w-full border-slate-500"
+                    onChange={(event) => setSort(event.target.value)}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Price
+                    </option>
+                    <option value="-price">High</option>
+                    <option value="price">Low</option>
+                  </select>
                 </div>
-              </ul>
-
-              {/* dropdown  */}
-              <div className="p-4">
-                <h1 className="font-semibold text-xl mb-2">Sort by Price</h1>
-
-                <select
-                  className="bg-transparent border w-full border-slate-500"
-                  onChange={(event) => setSort(event.target.value)}
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Price
-                  </option>
-                  <option value="-price">High</option>
-                  <option value="price">Low</option>
-                </select>
               </div>
             </div>
           </div>
 
           {/* card section */}
-          <div className="grid grid-cols-1 gap-16 md:gap-8 px-8  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-3 lg:w-[78%] h-fit">
+          <div className="grid grid-cols-1 gap-16 md:gap-8 px-0  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-3 lg:w-[78%] h-fit">
             {products?.data!.map(({ _id, name, brand, type, price, image }) => (
               <div key={_id} className="card card-compact shadow-xl ">
                 <figure className="">
