@@ -15,7 +15,7 @@ const SingleProduct = () => {
 
   const dispatch = useDispatch();
 
-  console.log(product);
+  // console.log(product);
   useEffect(() => {
     if (Number(product?.data?.quantity) <= 0) {
       setDisableBtn(true);
@@ -34,8 +34,8 @@ const SingleProduct = () => {
           unitPrice: product?.data?.price as number,
         })
       );
-    } else if (data.quantity < 0) {
-      toast.error("Quantity can not be negative", {
+    } else if (data.quantity <= 0) {
+      toast.error("Quantity can not be negative or zero", {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,

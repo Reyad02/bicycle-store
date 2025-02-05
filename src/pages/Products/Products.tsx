@@ -7,6 +7,7 @@ import {
 import { Checkbox } from "../../components/ui/checkbox";
 import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import ScrollToTop from "react-scroll-to-top";
 
 const Products = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -73,6 +74,16 @@ const Products = () => {
         </div>
 
         <div className=" flex lg:gap-4 ">
+          <ScrollToTop
+            smooth={true}
+            color="#0BBA48"
+            style={{
+              borderRadius: "9999px",
+              width: "60px",
+              height: "60px",
+              justifyItems: "center",
+            }}
+          />
           {/* sidebar section  */}
           <div className="drawer lg:drawer-open w-[20%] lg:border  ">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

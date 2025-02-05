@@ -110,6 +110,9 @@ const Navbar = () => {
             <li>
               <CustomNavLink to="/about">About</CustomNavLink>
             </li>
+            <li>
+              <CustomNavLink to="/contact">Contact</CustomNavLink>
+            </li>
           </ul>
         </div>
         <div className="navbar-end gap-6">

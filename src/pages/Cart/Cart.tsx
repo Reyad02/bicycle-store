@@ -32,7 +32,7 @@ const Cart = () => {
 
   const handleCheckOut = async () => {
     if (!token || !userEmail) {
-      console.log(location.pathname);
+      // console.log(location.pathname);
       navigate("/login", { state: { from: location.pathname } });
       return;
     }

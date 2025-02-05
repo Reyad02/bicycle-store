@@ -1,3 +1,4 @@
+import ScrollToTop from "react-scroll-to-top";
 import Section_Heading from "../../components/Section_Heading/Section_Heading";
 import Shining_images_part from "../../components/Shining_images_part/Shining_images_part";
 import Team_Member_Image from "../../components/Team_Member_Image/Team_Member_Image";
@@ -43,6 +44,16 @@ const About = () => {
           </div>
         </div>
       </div>
+      <ScrollToTop
+        smooth={true}
+        color="#0BBA48"
+        style={{
+          borderRadius: "9999px",
+          width: "60px",
+          height: "60px",
+          justifyItems: "center",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto py-20">
         <div className="max-w-xl mx-auto flex flex-col justify-center items-center gap-2 mb-8">
