@@ -11,6 +11,12 @@ import Payment_Success from "../pages/Payment_Success/Payment_Success";
 import Payment_Failed from "../pages/Payment_Failed/Payment_Failed";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import Contact from "../pages/Contact/Contact";
+import Admin_Home from "../pages/Admin/Admin_Home/Admin_Home";
+import Admin_Layout from "../components/Layout/Admin_Layout";
+import AdminPrivateRoute from "./AdminPrivaterRoute";
+import Admin_Poducts from "../pages/Admin/Admin_Poducts/Admin_Poducts";
+import Add_Product from "../pages/Admin/Add_Product/Add_Product";
+import Customers from "../pages/Admin/Customers/Customers";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +73,44 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <MyOrders />
           </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <Admin_Layout />,
+    children: [
+      {
+        path: "/admin",
+        element: (
+          <AdminPrivateRoute>
+            <Admin_Home />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/admin/products",
+        element: (
+          <AdminPrivateRoute>
+            <Admin_Poducts />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/admin/add-product",
+        element: (
+          <AdminPrivateRoute>
+            <Add_Product />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/admin/customers",
+        element: (
+          <AdminPrivateRoute>
+            <Customers />
+          </AdminPrivateRoute>
         ),
       },
     ],

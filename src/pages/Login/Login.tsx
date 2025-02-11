@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { IError } from "../../types/error.type";
 import { ToastContainer, toast } from "react-toastify";
+import UserRole from "../../Constants/Role";
 
 const Login = () => {
   const [login] = useLoginMutation();
@@ -48,16 +49,22 @@ const Login = () => {
           userId: res?.data?.data?.isUserExist?._id,
         })
       );
-      navigate(location.state?.from || "/products", {
-        replace: true,
-      });
+      if (role === UserRole.admin) {
+        navigate("/admin", {
+          replace: true,
+        });
+      } else {
+        navigate(location.state?.from || "/products", {
+          replace: true,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <div className="py-20 flex max-w-7xl mx-auto justify-between items-center">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="md:w-[40%] mx-auto border p-8">
         <PayFrom onSubmit={handleOrderFrom}>
           <PayInput

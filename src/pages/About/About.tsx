@@ -98,7 +98,7 @@ const About = () => {
           <Team_Member_Image
             image="https://i.postimg.cc/QtdnDgWS/portrait-successful-business-woman-background-office-160672-12260.avif"
             name="Mark Wood"
-            position="Sale Manager"
+            position="Accountant"
           ></Team_Member_Image>
         </div>
       </div>

@@ -14,7 +14,7 @@ interface ICustomNavLink {
   onClick?: () => void;
 }
 
-const CustomNavLink = ({ to, children, onClick }: ICustomNavLink) => {
+export const CustomNavLink = ({ to, children, onClick }: ICustomNavLink) => {
   return (
     <NavLink
       to={to}

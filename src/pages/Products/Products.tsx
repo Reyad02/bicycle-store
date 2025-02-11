@@ -85,9 +85,9 @@ const Products = () => {
             }}
           />
           {/* sidebar section  */}
-          <div className="drawer lg:drawer-open w-[20%] lg:border  ">
+          <div className="drawer lg:drawer-open w-[20%] lg:border auto-cols-auto">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center ">
+            <div className="drawer-content flex flex-col items-center lg:hidden">
               {/* Page content here */}
               <label
                 htmlFor="my-drawer-2"
@@ -103,12 +103,12 @@ const Products = () => {
                 className="drawer-overlay"
               ></label>
 
-              <div className="bg-slate-100 lg:bg-transparent h-full w">
+              <div className="bg-slate-100 lg:bg-transparent h-full lg:w-full">
                 {/* brand  */}
-                <ul className="menu items-center min-w-full text-black p-4 ">
-                  <div>
-                    <h1 className="font-semibold text-xl mb-4">Brands</h1>
-                    <div className="flex flex-col gap-2">
+                <ul className="menu items-start min-w-full text-black p-4 ">
+                  <div className="">
+                    <h1 className="font-semibold text-xl mb-4 ">Brands</h1>
+                    <div className="flex flex-col gap-2 ">
                       {brands?.data?.map((brand: string, idx: number) => (
                         <div key={idx} className="flex items-center gap-4 ">
                           <Checkbox
