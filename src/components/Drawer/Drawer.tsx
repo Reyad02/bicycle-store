@@ -3,13 +3,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 
 const Drawer = () => {
-  const [productActive, setProductActive] = useState(false);
-  const [userActive, setUserActive] = useState(false);
+  const [productActive, setProductActive] = useState(true);
+  // const [userActive, setUserActive] = useState(false);
 
   return (
-    <div className="drawer lg:drawer-open w-[20%] lg:border auto-cols-auto">
+    <div className="drawer lg:drawer-open w-[20%] lg:border lg:border-black auto-cols-auto ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center lg:hidden">
+      <div className="drawer-content flex flex-col items-center lg:hidden col-span-1	">
         <label
           htmlFor="my-drawer-2"
           className="btn bg-[#0BBA48] text-white border-none outline-none drawer-button lg:hidden "
@@ -34,7 +34,7 @@ const Drawer = () => {
                     <NavLink
                       onClick={() => {
                         setProductActive(true);
-                        setUserActive(false);
+                        // setUserActive(false);
                       }}
                       style={({ isActive }) => ({
                         color: isActive ? "white" : "#1C1C1C",
@@ -50,7 +50,7 @@ const Drawer = () => {
                     <NavLink
                       onClick={() => {
                         setProductActive(true);
-                        setUserActive(false);
+                        // setUserActive(false);
                       }}
                       to="add-product"
                       style={({ isActive }) => ({
@@ -69,7 +69,7 @@ const Drawer = () => {
               <NavLink
                 onClick={() => {
                   setProductActive(false);
-                  setUserActive(true);
+                  // setUserActive(true);
                 }}
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "#1C1C1C",

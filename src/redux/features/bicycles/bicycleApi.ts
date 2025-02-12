@@ -55,6 +55,25 @@ const bicycleApi = baseApi.injectEndpoints({
         };
       },
     }),
+    updateBicycle: builder.mutation({
+      query: ({ productId, formData }) => {
+        return {
+          url: `/products/${productId}`,
+          method: "PUT",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["bicycles"],
+    }),
+    deleteBicycle: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["bicycles"],
+    }),
   }),
 });
 
@@ -62,4 +81,6 @@ export const {
   useGetAllBicyclesQuery,
   useGetSingleBicycleQuery,
   useGetBicycleBrandsQuery,
+  useDeleteBicycleMutation,
+  useUpdateBicycleMutation,
 } = bicycleApi;
