@@ -1,8 +1,196 @@
+import { FieldValues } from "react-hook-form";
+import PayFrom from "../../../components/CustomForm/CustomFrom";
+import PayInput from "../../../components/CustomInput/CustomInput";
+import CustomTextArea from "../../../components/CustomTextArea/CustomTextArea";
+import { Button } from "../../../components/ui/button";
+import { useState } from "react";
+import { useCreateBicycleMutation } from "../../../redux/features/bicycles/bicycleApi";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { ICustomError, IError } from "../../../types/error.type";
+import { toast, ToastContainer } from "react-toastify";
 
 const Add_Product = () => {
-  return (
-    <div>Add_Product</div>
-  )
-}
+  const [newType, setNewType] = useState("");
+  const [addBicycle] = useCreateBicycleMutation();
+  const [sentImg, setSentImg] = useState(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-export default Add_Product
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleFileChange = (event: any) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSentImg(file);
+      setPreviewImage(URL.createObjectURL(file));
+    }
+  };
+  const isFetchBaseQueryError = (
+    error: unknown
+  ): error is FetchBaseQueryError => {
+    return typeof error === "object" && error !== null && "data" in error;
+  };
+
+  const handleContactForm = async (data: FieldValues) => {
+    const bicycleInfo = {
+      name: data.name,
+      brand: data.brand,
+      description: data.description,
+      price: Number(data.price),
+      quantity: Number(data.quantity),
+      type: newType,
+    };
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(bicycleInfo));
+    if (sentImg) {
+      formData.append("file", sentImg);
+    }
+    const res = await addBicycle({ formData });
+    if (isFetchBaseQueryError(res?.error)) {
+      if ((res?.error?.data as IError)?.message === "Validation failed") {
+        const errorData = res.error.data as ICustomError;
+        const errorMessage = errorData.err?.issues?.[0]?.message;
+        toast.error(errorMessage, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error(`${(res?.error?.data as IError)?.message}`, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } else {
+      toast.success(`${res?.data?.message}`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+  return (
+    <div>
+      <ToastContainer />
+      <div>
+        <PayFrom onSubmit={handleContactForm}>
+          {" "}
+          <div className="flex md:gap-4 items-center flex-col md:flex-row">
+            <input
+              type="file"
+              className="file-input file-input-sm text-sm w-full bg-transparent mb-4 border-[#E5E5E5]  shadow-sm border"
+              onChange={handleFileChange}
+            />
+            <div className="w-full">
+              <div className="w-full h-48 flex items-center justify-center border mb-4 shadow-sm">
+                {previewImage ? (
+                  <img
+                    src={previewImage}
+                    alt="Selected Preview"
+                    className="w-full h-48 object-cover mt-2"
+                  />
+                ) : (
+                  <p className=" w-full text-center">Plz select an image</p>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="flex  md:gap-4 w-full flex-col md:flex-row">
+            <div className="w-full">
+              <p className="mb-1 pl-2 text-[#555555]">Name</p>
+              <PayInput
+                name="name"
+                type="text"
+                disabled={false}
+                placeholder="Bicycle Name"
+              ></PayInput>
+            </div>
+            <div className="w-full">
+              <p className="mb-1 pl-2 text-[#555555]">Brand</p>
+              <PayInput
+                name="brand"
+                type="text"
+                disabled={false}
+                placeholder="Bicycle Brand"
+              ></PayInput>
+            </div>
+          </div>
+          <div className="flex  md:gap-4 w-full flex-col md:flex-row">
+            <div className="w-full">
+              <p className="mb-1 pl-2 text-[#555555]">Bicycle Type</p>
+              <select
+                name={"type"}
+                className="w-full bg-transparent mb-5 border-[#E5E5E5] border px-2 py-2 rounded-md text-sm  shadow-sm"
+                onChange={(e) => setNewType(e.target.value)}
+                defaultValue={newType}
+              >
+                <option disabled value="">
+                  Select Type
+                </option>{" "}
+                <option value="Mountain">Mountain</option>
+                <option value="Road">Road</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="BMX">BMX</option>
+                <option value="Electric">Electric</option>
+              </select>
+            </div>
+            <div className="w-full">
+              <p className="mb-1 pl-2 text-[#555555]">Quantity</p>
+              <PayInput
+                name="quantity"
+                type="number"
+                disabled={false}
+                placeholder="Bicycle Quantity"
+              ></PayInput>
+            </div>
+          </div>
+          <div className="flex  md:gap-4 w-full flex-col md:flex-row">
+            <div className="w-full">
+              <p className="mb-1 pl-2 text-[#555555]">Price</p>
+              <PayInput
+                name="price"
+                type="number"
+                disabled={false}
+                placeholder="Unit Price"
+              ></PayInput>
+            </div>
+            <div className="w-full"></div>
+          </div>
+          <div className=" w-full ">
+            <p className="mb-1 pl-2 text-[#555555]">Bicycle Description</p>
+            <CustomTextArea
+              name="description"
+              disabled={false}
+              placeholder="Bicycle Description"
+            ></CustomTextArea>
+          </div>
+          <div className="flex justify-center">
+            <Button
+              className="bg-[#0BBA48] text-white mx-auto text-center  mt-2"
+              type="submit"
+            >
+              {" "}
+              Add New Bicycle
+            </Button>
+          </div>
+        </PayFrom>
+      </div>
+    </div>
+  );
+};
+
+export default Add_Product;

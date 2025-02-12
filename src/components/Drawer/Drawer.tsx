@@ -7,9 +7,9 @@ const Drawer = () => {
   // const [userActive, setUserActive] = useState(false);
 
   return (
-    <div className="drawer lg:drawer-open w-[20%] lg:border lg:border-black auto-cols-auto ">
+    <div className="drawer lg:drawer-open w-fit lg:w-[20%] lg:border lg:border-black auto-cols-auto ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center lg:hidden col-span-1	">
+      <div className="drawer-content flex flex-col items-start  pl-2  lg:hidden col-span-1	">
         <label
           htmlFor="my-drawer-2"
           className="btn bg-[#0BBA48] text-white border-none outline-none drawer-button lg:hidden "

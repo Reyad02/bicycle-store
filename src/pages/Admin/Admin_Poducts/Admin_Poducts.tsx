@@ -16,6 +16,7 @@ import { ICustomError, IError } from "../../../types/error.type";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 
 const Admin_Poducts = () => {
@@ -166,7 +167,7 @@ const Admin_Poducts = () => {
                   key={idx}
                   className="text-base text-black text-center hover:bg-gray-100 hover:cursor-pointer"
                 >
-                  <td>{item.name}</td>
+                  <td><Link to={`product-id/${item._id}`} className="hover:text-[#0BBA48] hover:underline">{item.name}</Link></td>
                   <td>{item.brand}</td>
                   <td>{item.type}</td>
                   <td>

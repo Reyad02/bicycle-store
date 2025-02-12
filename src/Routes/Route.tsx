@@ -113,6 +113,14 @@ const router = createBrowserRouter([
           </AdminPrivateRoute>
         ),
       },
+      {
+        path: "/admin/products/product-id/:id",
+        element: (
+          <AdminPrivateRoute>
+            <SingleProduct />
+          </AdminPrivateRoute>
+        ),
+      },
     ],
   },
 ]);

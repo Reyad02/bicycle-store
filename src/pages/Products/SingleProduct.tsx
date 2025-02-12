@@ -4,14 +4,20 @@ import PayFrom from "../../components/CustomForm/CustomFrom";
 import PayInput from "../../components/CustomInput/CustomInput";
 import { Button } from "../../components/ui/button";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { ToastContainer, toast } from "react-toastify";
+import { RootState } from "../../redux/store";
+import { jwtDecode } from "jwt-decode";
+import { TUser } from "../../redux/features/auth/authSlice";
+import UserRole from "../../Constants/Role";
 
 const SingleProduct = () => {
   const { id } = useParams();
   const { data: product } = useGetSingleBicycleQuery(id);
   const [disableBtn, setDisableBtn] = useState(false);
+  const token = useSelector((state: RootState) => state.auth.token);
+  const { role }: TUser = jwtDecode(token as string);
 
   const dispatch = useDispatch();
 
@@ -45,8 +51,7 @@ const SingleProduct = () => {
         progress: undefined,
         theme: "light",
       });
-    } 
-    else {
+    } else {
       toast.error(`Quantity can not be more than ${product?.data?.quantity}`, {
         position: "bottom-right",
         autoClose: 5000,
@@ -93,29 +98,33 @@ const SingleProduct = () => {
                 <p>Type: {product?.data?.type}</p>
                 <p>Available Quantity: {product?.data?.quantity}</p>
                 {Number(product?.data?.quantity) <= 0 && (
-                  <div className="badge badge-error text-black">
-                    Out Of Stock
-                  </div>
+                  <>
+                    <div className="badge badge-error text-black">
+                      Out Of Stock
+                    </div>
+                  </>
                 )}
-                <PayFrom onSubmit={handleOrderFrom}>
-                  {/* <p className="mb-1">
+                {role === UserRole.customer && (
+                  <PayFrom onSubmit={handleOrderFrom}>
+                    {/* <p className="mb-1">
                     Quantity<span className="text-red-600">*</span>
                   </p> */}
-                  <PayInput
-                    name={"quantity"}
-                    type={"number"}
-                    placeholder={"Quantity"}
-                    disabled={disableBtn}
-                  ></PayInput>
-                  <Button
-                    className="bg-[#0BBA48] text-white w-full mt-2"
-                    disabled={disableBtn}
-                    type="submit"
-                  >
-                    {" "}
-                    Place Order
-                  </Button>
-                </PayFrom>
+                    <PayInput
+                      name={"quantity"}
+                      type={"number"}
+                      placeholder={"Quantity"}
+                      disabled={disableBtn}
+                    ></PayInput>
+                    <Button
+                      className="bg-[#0BBA48] text-white w-full mt-2"
+                      disabled={disableBtn}
+                      type="submit"
+                    >
+                      {" "}
+                      Place Order
+                    </Button>
+                  </PayFrom>
+                )}
               </div>
             </div>
           </div>

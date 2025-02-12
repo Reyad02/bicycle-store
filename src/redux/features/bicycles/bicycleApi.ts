@@ -74,6 +74,16 @@ const bicycleApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["bicycles"],
     }),
+    createBicycle: builder.mutation({
+      query: ({ formData }) => {
+        return {
+          url: `/products`,
+          method: "POST",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["bicycles"],
+    }),
   }),
 });
 
@@ -83,4 +93,5 @@ export const {
   useGetBicycleBrandsQuery,
   useDeleteBicycleMutation,
   useUpdateBicycleMutation,
+  useCreateBicycleMutation
 } = bicycleApi;

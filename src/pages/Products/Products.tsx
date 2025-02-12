@@ -22,11 +22,8 @@ const Products = () => {
     ...selectedBrands.map((b) => ({ name: "brand", value: b })),
   ]);
 
-  // console.log(currentPage);
-
   useEffect(() => {
     setCurrentPage(1);
-    // console.log(products?.meta?.page );
   }, [selectedBrands, searchTerm]);
 
   const handlePageChange = (page: number) => {
@@ -73,7 +70,7 @@ const Products = () => {
           </label>
         </div>
 
-        <div className=" flex lg:gap-4 ">
+        <div className=" flex flex-col md:flex-row gap-4 ">
           <ScrollToTop
             smooth={true}
             color="#0BBA48"
@@ -87,7 +84,7 @@ const Products = () => {
           {/* sidebar section  */}
           <div className="drawer lg:drawer-open w-[20%] lg:border auto-cols-auto">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center lg:hidden">
+            <div className="drawer-content flex flex-col items-start lg:hidden col-span-1 p-2">
               {/* Page content here */}
               <label
                 htmlFor="my-drawer-2"
@@ -150,7 +147,7 @@ const Products = () => {
           </div>
 
           {/* card section */}
-          <div className="grid grid-cols-1 gap-16 md:gap-8 px-0  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-3 lg:w-[78%] h-fit">
+          <div className="grid grid-cols-1 gap-16 md:gap-8 px-2 lg:px-0 md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-3 lg:w-[78%] h-fit">
             {products?.data!.map(({ _id, name, brand, type, price, image }) => (
               <div key={_id} className="card card-compact shadow-xl ">
                 <figure className="">
