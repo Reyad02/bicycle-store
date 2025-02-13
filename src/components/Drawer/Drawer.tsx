@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 
 const Drawer = () => {
-  const [productActive, setProductActive] = useState(true);
+  const [productActive, setProductActive] = useState(false);
   // const [userActive, setUserActive] = useState(false);
 
   return (
