@@ -34,11 +34,14 @@ export interface Bicycle {
 }
 
 export interface IDataTransform {
+  bicycleImage?: string;
   bicycleName: string;
   bicycleQuantity: number;
   bicycleUnitPrice: number;
   currentBicycleTotalPrice: number;
   orderDate: string;
+  orderStatus?: string;
+  orderId?: string;
 }
 
 const MyOrders = () => {

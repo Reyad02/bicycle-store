@@ -12,6 +12,7 @@ import Payment_Failed from "../pages/Payment_Failed/Payment_Failed";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import Contact from "../pages/Contact/Contact";
 import Admin_Home from "../pages/Admin/Admin_Home/Admin_Home";
+import Admin_Order from "../pages/Admin/Admin_Order/Admin_Order";
 import Admin_Layout from "../components/Layout/Admin_Layout";
 import AdminPrivateRoute from "./AdminPrivaterRoute";
 import Admin_Poducts from "../pages/Admin/Admin_Poducts/Admin_Poducts";
@@ -118,6 +119,14 @@ const router = createBrowserRouter([
         element: (
           <AdminPrivateRoute>
             <SingleProduct />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/admin/orders",
+        element: (
+          <AdminPrivateRoute>
+            <Admin_Order />
           </AdminPrivateRoute>
         ),
       },

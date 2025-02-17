@@ -82,6 +82,23 @@ const Drawer = () => {
                 Customers
               </NavLink>
             </li>
+            <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white">
+              <NavLink
+                onClick={() => {
+                  setProductActive(false);
+                  // setUserActive(true);
+                }}
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "#1C1C1C",
+                  backgroundColor: isActive ? "#0BBA48" : "transparent",
+                  fontWeight: isActive ? "bold" : "normal",
+                })}
+                className={"hover:text-white"}
+                to="orders"
+              >
+                Orders
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

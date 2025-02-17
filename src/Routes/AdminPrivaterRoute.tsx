@@ -10,9 +10,14 @@ const AdminPrivateRoute = ({ children }: { children: ReactNode }) => {
   const token = useSelector((state: RootState) => state.auth.token);
   const userEmail = useSelector((state: RootState) => state.auth.user);
   const location = useLocation();
+  
+  if (!token || !userEmail) {
+    return <Navigate to="/login" replace={true} state={location.pathname} />;
+  }
 
   const { role }: TUser = jwtDecode(token as string);
-  if (!token || !userEmail || role !== UserRole.admin) {
+
+  if (role !== UserRole.admin) {
     return <Navigate to="/login" replace={true} state={location.pathname} />;
   }
 

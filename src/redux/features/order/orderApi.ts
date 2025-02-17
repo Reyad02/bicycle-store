@@ -1,3 +1,5 @@
+import { IOrder } from "../../../pages/MyOrders/MyOrders";
+import { TResponseRedux } from "../../../types/global.type";
 import { baseApi } from "../../api/baseApi";
 
 const orderApi = baseApi.injectEndpoints({
@@ -21,7 +23,45 @@ const orderApi = baseApi.injectEndpoints({
       },
       providesTags: ["my_order"],
     }),
+    getAllOrders: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args.forEach((element: { name: string; value: string }) => {
+            params.append(element.name, element.value);
+          });
+        }
+        return {
+          url: `/orders`,
+          method: "GET",
+          params,
+        };
+      },
+      providesTags: ["orders"],
+      transformResponse: (response: TResponseRedux<IOrder[]>) => {
+        return {
+          data: response.data,
+          meta: response.metaData,
+        };
+      },
+    }),
+    updateBicycleStatus: builder.mutation({
+      query: ({ orderId, data }) => {
+        console.log(orderId, data);
+        return {
+          url: `/orders/${orderId}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["orders"],
+    }),
   }),
 });
 
-export const { useMakeOrderMutation, useMyOrdersQuery } = orderApi;
+export const {
+  useMakeOrderMutation,
+  useMyOrdersQuery,
+  useGetAllOrdersQuery,
+  useUpdateBicycleStatusMutation,
+} = orderApi;

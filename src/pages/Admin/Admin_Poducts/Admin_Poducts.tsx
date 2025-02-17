@@ -17,7 +17,9 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
-
+import { IoEye } from "react-icons/io5";
+import { BsPencilSquare } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 
 const Admin_Poducts = () => {
   const [bicycleInfo, setBicycleInfo] = useState<IBicycle | null>(null);
@@ -124,7 +126,7 @@ const Admin_Poducts = () => {
 
   return (
     <>
-      <div className="   mx-auto z-10">
+      <div className="mx-auto z-10">
         <ToastContainer />
 
         <div className="flex justify-end items-center gap-2 mb-2">
@@ -135,29 +137,30 @@ const Admin_Poducts = () => {
               disabled={currentPage == 1}
               onClick={() => handlePageChange(currentPage - 1)}
             >
-              <GrPrevious className="hover:text-[#0BBA48]"/>
+              <GrPrevious className="hover:text-[#0BBA48]" />
             </button>
-            <p className="border rounded-full px-2 py-1 border-[#0BBA48] ">{currentPage}</p>
+            <p className="border rounded-full px-2 py-1 border-[#0BBA48] ">
+              {currentPage}
+            </p>
             <button
               className=" btn btn-sm btn-outline hover:border-[#0BBA48] hover:bg-white text-black"
               disabled={currentPage == products?.meta?.totalPage}
               onClick={() => handlePageChange(currentPage + 1)}
             >
-              <GrNext className="hover:text-[#0BBA48]"/>
+              <GrNext className="hover:text-[#0BBA48]" />
             </button>
           </div>
         </div>
-
 
         <div className="overflow-x-auto">
           <table className="table border border-black">
             <thead>
               <tr className="text-base text-black text-center">
-                <th>Name</th>
+                <th className="text-left">Product</th>
                 <th>Brand</th>
-                <th>Type</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
+                <th className="">Type</th>
+                <th className="">Quantity</th>
+                <th className="">Unit Price</th>
                 <th></th>
               </tr>
             </thead>
@@ -165,9 +168,22 @@ const Admin_Poducts = () => {
               {products?.data?.map((item, idx) => (
                 <tr
                   key={idx}
-                  className="text-base text-black text-center hover:bg-gray-100 hover:cursor-pointer"
+                  className="text-base text-black text-center items-center hover:bg-gray-100 "
                 >
-                  <td><Link to={`product-id/${item._id}`} className="hover:text-[#0BBA48] hover:underline">{item.name}</Link></td>
+                  <td className="flex items-center gap-4">
+                    <div className="mask mask-squircle h-12 w-12">
+                      <img
+                        src={
+                          item.image ||
+                          "https://img.daisyui.com/images/profile/demo/2@94.webp"
+                        }
+                        alt="Avatar Tailwind CSS Component"
+                      />
+                    </div>
+                    <p>
+                      {item.name}
+                    </p>
+                  </td>
                   <td>{item.brand}</td>
                   <td>{item.type}</td>
                   <td>
@@ -180,22 +196,28 @@ const Admin_Poducts = () => {
                     )}
                   </td>
                   <td>${item.price}.00</td>
-                  <td className="flex gap-4">
-                    <Button
-                      onClick={() => {
-                        setBicycleInfo(item);
-                        setOpenModal(true);
-                      }}
-                      className="text-black bg-transparent border border-gray-600 hover:bg-[#0BBA48] hover:text-white hover:border-[#0BBA48]"
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      onClick={() => deleteItem(item)}
-                      className="text-black bg-transparent border border-gray-600 hover:bg-red-600 hover:text-white hover:border-red-600"
-                    >
-                      Delete
-                    </Button>
+                  <td >
+                    <div className="flex gap-4 ">
+                      <Link to={`product-id/${item._id}`}>
+                        <IoEye className="text-xl hover:text-[#0BBA48]" />
+                      </Link>
+
+                      <div
+                        className="hover:cursor-pointer"
+                        onClick={() => {
+                          setBicycleInfo(item);
+                          setOpenModal(true);
+                        }}
+                      >
+                        <BsPencilSquare className="text-xl hover:text-[#0BBA48]" />
+                      </div>
+                      <div
+                        className="hover:cursor-pointer"
+                        onClick={() => deleteItem(item)}
+                      >
+                        <MdDelete className="text-xl hover:text-red-600" />
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ))}
