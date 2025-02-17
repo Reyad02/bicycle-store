@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useMyOrdersQuery } from "../../redux/features/order/orderApi";
+import { IUser } from "../../types/User.type";
 export interface IOrder {
   _id: string;
-  user: string;
+  user: IUser;
   status: string;
   totalPrice: number;
   paymentStatus: string;
@@ -42,6 +43,7 @@ export interface IDataTransform {
   orderDate: string;
   orderStatus?: string;
   orderId?: string;
+  customerName?: string;
 }
 
 const MyOrders = () => {

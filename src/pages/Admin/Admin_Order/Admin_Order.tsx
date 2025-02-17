@@ -18,6 +18,8 @@ const Admin_Order = () => {
     { name: "limit", value: 14 },
   ]);
   const [updateBicycleStatus] = useUpdateBicycleStatusMutation();
+  const [openModal, setOpenModal] = useState(false);
+  const [orderInfo, setOrderInfo] = useState<IDataTransform | null>(null);
 
   const dataTransform: IDataTransform[] = [];
 
@@ -26,6 +28,7 @@ const Admin_Order = () => {
       const date = new Date(order.createdAt);
       const orderDate = date.toISOString().split("T")[0];
       const orderId = order._id;
+      const customerName = order.user?.name;
 
       order.items.forEach((item: IItem) => {
         const bicycleImage = item.bicycle.image;
@@ -46,6 +49,7 @@ const Admin_Order = () => {
             orderDate,
             orderStatus,
             orderId,
+            customerName,
           });
         }
       });
@@ -127,10 +131,11 @@ const Admin_Order = () => {
                 <tr className="text-base text-black text-center">
                   <th>Product</th>
                   <th>Unit Price</th>
-                  <th>Total Quantity</th>
+                  <th>Quantity</th>
                   <th>Total Price</th>
                   <th>Status</th>
                   <th>Order Date</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -138,15 +143,6 @@ const Admin_Order = () => {
                   <tr className="text-base text-black text-center" key={index}>
                     <td className="flex items-center gap-4 justify-center">
                       {" "}
-                      <div className="mask flex items-center h-12 w-12">
-                        <img
-                          src={
-                            bicycle.bicycleImage ||
-                            "https://img.daisyui.com/images/profile/demo/2@94.webp"
-                          }
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
                       {bicycle.bicycleName}
                     </td>
                     <td>${bicycle.bicycleUnitPrice}</td>
@@ -164,9 +160,9 @@ const Admin_Order = () => {
                       )}
                     </td>
                     <td>{bicycle.orderDate}</td>
-                    <td>
+                    <td className="flex items-center gap-2 justify-center">
                       {bicycle.orderStatus === "Pending" ? (
-                        <Button
+                        <Button 
                           onClick={() =>
                             updateOrderInfo(bicycle?.orderId as string)
                           }
@@ -175,8 +171,17 @@ const Admin_Order = () => {
                           Deliver
                         </Button>
                       ) : (
-                        <p>Delivered</p>
+                        <p>-</p>
                       )}
+                      <Button size={"sm"}
+                        onClick={() => {
+                          setOrderInfo(bicycle);
+                          setOpenModal(true);
+                        }}
+                        className={`text-black bg-transparent border border-gray-600 hover:text-white hover:bg-[#0BBA48] hover:border-[#0BBA48]`}
+                      >
+                        View
+                      </Button>
                     </td>
                   </tr>
                 ))}
@@ -185,6 +190,29 @@ const Admin_Order = () => {
           </div>
         </div>
       </div>
+
+      {openModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg w-1/3 relative">
+            <h2 className="text-2xl mb-4 text-center">Order</h2>
+            <div className="flex flex-col gap-2">
+              <p>Customer: {orderInfo?.customerName}</p>
+              <p>Product: {orderInfo?.bicycleName}</p>
+              <p>Quantity: {orderInfo?.bicycleQuantity}</p>
+              <p>Unit Price: {orderInfo?.bicycleUnitPrice}</p>
+              <p>Total Price: {orderInfo?.currentBicycleTotalPrice}</p>
+            </div>
+            
+            <Button
+              className="bg-gray-300 text-black w-full mt-2"
+              type="button"
+              onClick={() => setOpenModal(false)}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   ) : (
     <div className="flex flex-col items-center justify-center py-10">
