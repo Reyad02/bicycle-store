@@ -56,6 +56,46 @@ const orderApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["orders"],
     }),
+    getTotalIncome: builder.query({
+      query: () => {
+        return {
+          url: `/orders/getTotalIncome`,
+          method: "GET",
+        };
+      },
+    }),
+    getTotalDelivered: builder.query({
+      query: () => {
+        return {
+          url: `/orders/totalDeliveredProducts`,
+          method: "GET",
+        };
+      },
+    }),
+    getTotalPending: builder.query({
+      query: () => {
+        return {
+          url: `/orders/totalPendingProducts`,
+          method: "GET",
+        };
+      },
+    }),
+    getTopSellingProducts: builder.query({
+      query: () => {
+        return {
+          url: `/orders/topProducts`,
+          method: "GET",
+        };
+      },
+    }),
+    getLast30Products: builder.query({
+      query: () => {
+        return {
+          url: `/orders/last7DaysIncome`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -64,4 +104,9 @@ export const {
   useMyOrdersQuery,
   useGetAllOrdersQuery,
   useUpdateBicycleStatusMutation,
+  useGetTotalIncomeQuery,
+  useGetTotalDeliveredQuery,
+  useGetTotalPendingQuery,
+  useGetTopSellingProductsQuery,
+  useGetLast30ProductsQuery,
 } = orderApi;
