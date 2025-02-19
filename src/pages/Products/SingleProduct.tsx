@@ -67,7 +67,7 @@ const SingleProduct = () => {
 
   return (
     <div className="bg-[#F5F5F5]">
-      <div className="max-w-7xl mx-auto py-20">
+      <div className="max-w-7xl mx-auto py-4 lg:py-20">
         <ToastContainer />
         <div className="flex justify-between flex-col md:flex-row px-2 lg:px-0">
           <div className="md:w-[58%] flex flex-col gap-8">
@@ -81,7 +81,7 @@ const SingleProduct = () => {
                 className="w-full object-cover"
               />
             </div>
-            <p className="text-lg ">{product?.data?.description}</p>
+            <p className="text-lg mb-8">{product?.data?.description}</p>
           </div>
 
           <div className="md:w-[38%] flex flex-col gap-8">

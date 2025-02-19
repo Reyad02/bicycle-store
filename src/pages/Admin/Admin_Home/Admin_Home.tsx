@@ -17,11 +17,9 @@ const Admin_Home = () => {
   const { data: totalPending } = useGetTotalPendingQuery(undefined);
   const { data: topSellingProducts } = useGetTopSellingProductsQuery(undefined);
   const { data: recentSoldProducts } = useGetLast30ProductsQuery(undefined);
-  console.log(recentSoldProducts?.data);
 
   const data = [
     ["Year", "Sales"],
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(recentSoldProducts?.data?.map((item: any) => [
       item._id,
       item.totalSold,
@@ -29,7 +27,6 @@ const Admin_Home = () => {
   ];
 
   const options = {
-    // title: "Recent Orders",
     colors: ["#0BBA48"],
   };
   return (
@@ -78,8 +75,8 @@ const Admin_Home = () => {
         </div>
       </div>
 
-      <div className="flex justify-between mt-8 ">
-        <div className="w-[48%] bg-white pb-4 rounded-xl shadow-md">
+      <div className="flex flex-col gap-4 lg:flex-row justify-between mt-4 lg:mt-8 ">
+        <div className="w-full lg:w-[48%] bg-white pb-4 rounded-xl shadow-md">
           <p className="px-6 py-4 text-xl font-semibold">Top Products</p>
           <div className="overflow-x-auto px-4 ">
             <table className="table  rounded-lg text-center">
@@ -126,7 +123,7 @@ const Admin_Home = () => {
           </div>
         </div>
 
-        <div className="w-[48%] bg-white  rounded-xl shadow-md border-none">
+        <div className="w-full lg:w-[48%] bg-white  rounded-xl shadow-md border-none">
           <p className="border text-xl  px-6 py-4 font-semibold border-none">
             Recent Orders
           </p>

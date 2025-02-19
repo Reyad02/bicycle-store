@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   useGetAllOrdersQuery,
   useUpdateBicycleStatusMutation,
@@ -193,7 +192,7 @@ const Admin_Order = () => {
 
       {openModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-1/3 relative">
+          <div className="bg-white p-6 rounded-lg w-2/3 lg:w-1/3 relative">
             <h2 className="text-2xl mb-4 text-center">Order</h2>
             <div className="flex flex-col gap-2">
               <p>Customer: {orderInfo?.customerName}</p>
@@ -219,12 +218,6 @@ const Admin_Order = () => {
       <h2 className="text-xl font-semibold text-gray-600">
         Your order history is empty!
       </h2>
-      <Link
-        to="/products"
-        className="mt-4 bg-[#0BBA48] text-white px-4 py-2 rounded"
-      >
-        Go to Products
-      </Link>
     </div>
   );
 };

@@ -65,7 +65,7 @@ const Login = () => {
   return (
     <div className="py-20 flex max-w-7xl mx-auto justify-between items-center">
       <ToastContainer />
-      <div className="md:w-[40%] mx-auto border p-8">
+      <div className=" w-[80%] md:w-[60%] lg:w-[40%] mx-auto border p-8">
         <PayFrom onSubmit={handleOrderFrom}>
           <PayInput
             name={"email"}
