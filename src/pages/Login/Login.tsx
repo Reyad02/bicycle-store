@@ -6,7 +6,7 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { jwtDecode } from "jwt-decode";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";
 import { FieldValues } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { IError } from "../../types/error.type";
 import { ToastContainer, toast } from "react-toastify";
@@ -84,13 +84,8 @@ const Login = () => {
             Login
           </Button>
         </PayFrom>
+        <p className="mt-4 text-center text-base">You don't have any account then <Link className="text-[#0BBA48]" to="/sign-up">Sign Up</Link> first</p>
       </div>
-      {/* <div className="md:w-[48%]">
-        <img
-          src="https://i.postimg.cc/VvzwZFnR/about-us-2-qaspjptn4b9uv65e7i8w305i4xynzq6t441tw9wcwo.jpg"
-          alt=""
-        />
-      </div> */}
     </div>
   );
 };

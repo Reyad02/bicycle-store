@@ -18,6 +18,7 @@ import AdminPrivateRoute from "./AdminPrivaterRoute";
 import Admin_Poducts from "../pages/Admin/Admin_Poducts/Admin_Poducts";
 import Add_Product from "../pages/Admin/Add_Product/Add_Product";
 import Customers from "../pages/Admin/Customers/Customers";
+import Registration from "../pages/Registration/Registration";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/sign-up",
+        element: <Registration />,
       },
       {
         path: "/cart",
