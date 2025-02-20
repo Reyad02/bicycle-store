@@ -117,7 +117,7 @@ const MyOrders = () => {
       </div>
     </div>
   ) : (
-    <div className="flex flex-col items-center justify-center py-10">
+    <div className="flex flex-col items-center justify-center py-10 bg-[#F5F5F5]">
       <h2 className="text-xl font-semibold text-gray-600">
         Your order history is empty!
       </h2>

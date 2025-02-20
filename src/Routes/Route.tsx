@@ -19,6 +19,7 @@ import Admin_Poducts from "../pages/Admin/Admin_Poducts/Admin_Poducts";
 import Add_Product from "../pages/Admin/Add_Product/Add_Product";
 import Customers from "../pages/Admin/Customers/Customers";
 import Registration from "../pages/Registration/Registration";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
           </PrivateRoute>
         ),
       },

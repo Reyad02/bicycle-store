@@ -63,28 +63,39 @@ const Login = () => {
     }
   };
   return (
-    <div className="py-20 flex max-w-7xl mx-auto justify-between items-center">
-      <ToastContainer />
-      <div className=" w-[80%] md:w-[60%] lg:w-[40%] mx-auto border p-8">
-        <PayFrom onSubmit={handleOrderFrom}>
-          <PayInput
-            name={"email"}
-            type={"text"}
-            placeholder={"Email"}
-            disabled={false}
-          ></PayInput>
-          <PayInput
-            name={"password"}
-            type={"password"}
-            placeholder={"Password"}
-            disabled={false}
-          ></PayInput>
-          <Button className="bg-[#0BBA48] text-white w-full mt-2" type="submit">
-            {" "}
-            Login
-          </Button>
-        </PayFrom>
-        <p className="mt-4 text-center text-base">You don't have any account then <Link className="text-[#0BBA48]" to="/sign-up">Sign Up</Link> first</p>
+    <div className="bg-[#f5f5f5]">
+      <div className="py-20 flex max-w-7xl mx-auto justify-between items-center">
+        <ToastContainer />
+        <div className=" w-[80%] md:w-[60%] lg:w-[40%] mx-auto border p-8">
+          <PayFrom onSubmit={handleOrderFrom}>
+            <PayInput
+              name={"email"}
+              type={"text"}
+              placeholder={"Email"}
+              disabled={false}
+            ></PayInput>
+            <PayInput
+              name={"password"}
+              type={"password"}
+              placeholder={"Password"}
+              disabled={false}
+            ></PayInput>
+            <Button
+              className="bg-[#0BBA48] text-white w-full mt-2"
+              type="submit"
+            >
+              {" "}
+              Login
+            </Button>
+          </PayFrom>
+          <p className="mt-4 text-center text-base">
+            You don't have any account then{" "}
+            <Link className="text-[#0BBA48]" to="/sign-up">
+              Sign Up
+            </Link>{" "}
+            first
+          </p>
+        </div>
       </div>
     </div>
   );

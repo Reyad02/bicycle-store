@@ -12,7 +12,17 @@ const bicycleApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["my_order"],
     }),
+
+    changePass: builder.mutation({
+      query: (args) => {
+        return {
+          url: "/auth/change-pass",
+          method: "POST",
+          body: args,
+        };
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation } = bicycleApi;
+export const { useLoginMutation, useChangePassMutation } = bicycleApi;

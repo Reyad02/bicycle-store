@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetSingleBicycleQuery } from "../../redux/features/bicycles/bicycleApi";
 import PayFrom from "../../components/CustomForm/CustomFrom";
 import PayInput from "../../components/CustomInput/CustomInput";
@@ -17,11 +17,15 @@ const SingleProduct = () => {
   const { data: product } = useGetSingleBicycleQuery(id);
   const [disableBtn, setDisableBtn] = useState(false);
   const token = useSelector((state: RootState) => state.auth.token);
-  const { role }: TUser = jwtDecode(token as string);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // console.log(product);
+  let role = "";
+  if (token) {
+    const decodedToken: TUser = jwtDecode(token as string);
+    role = decodedToken.role;
+  }
+
   useEffect(() => {
     if (Number(product?.data?.quantity) <= 0) {
       setDisableBtn(true);
@@ -30,7 +34,6 @@ const SingleProduct = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOrderFrom = (data: any) => {
-    // console.log(data);
     if (data.quantity > 0 && data.quantity <= product!.data!.quantity) {
       dispatch(
         addToCart({
@@ -40,6 +43,10 @@ const SingleProduct = () => {
           unitPrice: product?.data?.price as number,
         })
       );
+
+      navigate("/cart", {
+        replace: true,
+      });
     } else if (data.quantity <= 0) {
       toast.error("Quantity can not be negative or zero", {
         position: "bottom-right",
@@ -104,7 +111,7 @@ const SingleProduct = () => {
                     </div>
                   </>
                 )}
-                {role === UserRole.customer && (
+                {role !== UserRole.admin && (
                   <PayFrom onSubmit={handleOrderFrom}>
                     {/* <p className="mb-1">
                     Quantity<span className="text-red-600">*</span>
@@ -121,7 +128,7 @@ const SingleProduct = () => {
                       type="submit"
                     >
                       {" "}
-                      Place Order
+                      Buy Now
                     </Button>
                   </PayFrom>
                 )}

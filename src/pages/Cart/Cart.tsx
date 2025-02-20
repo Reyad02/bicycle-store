@@ -135,7 +135,7 @@ const Cart = () => {
               onClick={handleCheckOut}
               className="bg-[#0BBA48] text-white w-fit "
             >
-              Checkout
+              Order Now
             </Button>
           </div>
         </div>

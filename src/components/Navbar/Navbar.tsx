@@ -1,12 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import blackclr from "@/assets/B_rcelle__1_-removebg-preview.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { logout } from "../../redux/features/auth/authSlice";
-import { CiUser } from "react-icons/ci";
+import { logout, TUser } from "../../redux/features/auth/authSlice";
+import { jwtDecode } from "jwt-decode";
+import UserRole from "../../Constants/Role";
 
 interface ICustomNavLink {
   to: string;
@@ -35,6 +36,15 @@ const Navbar = () => {
   const itemsInCart = useSelector((state: RootState) => state?.cart?.items);
   const userEmail = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
+  const [isProfileDropDown, setIsProfileDropDown] = useState(false);
+  const profileDropdownRef = useRef<HTMLDivElement>(null);
+
+  const token = useSelector((state: RootState) => state.auth.token);
+  let role = "";
+  if (token) {
+    const decodedToken: TUser = jwtDecode(token as string);
+    role = decodedToken.role;
+  }
 
   const closeDropdown = () => {
     setIsDropDown(false);
@@ -44,6 +54,22 @@ const Navbar = () => {
     localStorage.removeItem("token");
     dispatch(logout());
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileDropDown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <div>
       <div className="navbar bg-white">
@@ -131,9 +157,58 @@ const Navbar = () => {
 
           {userEmail ? (
             <>
-              <Link to={`/my-account`} className="text-3xl text-[#0BBA48] font-bold ">
+              {/* <Link
+                to={`/my-account`}
+                className="text-3xl text-[#0BBA48] font-bold "
+              >
                 <CiUser></CiUser>
-              </Link>
+              </Link> */}
+              <div
+                ref={profileDropdownRef}
+                className="dropdown dropdown-end z-40"
+              >
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                  onClick={() => setIsProfileDropDown(!isProfileDropDown)}
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src={
+                        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      }
+                    />
+                  </div>
+                </div>
+                {isProfileDropDown && (
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                  >
+                    <li
+                      onClick={() => setIsProfileDropDown(!isProfileDropDown)}
+                    >
+                      <Link to={"/my-profile"} className="justify-between">
+                        Profile
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => setIsProfileDropDown(!isProfileDropDown)}
+                    >
+                      <Link to={"/my-account"}>Orders</Link>
+                    </li>
+                    {role === UserRole.admin && (
+                      <li
+                        onClick={() => setIsProfileDropDown(!isProfileDropDown)}
+                      >
+                        <Link to={"/admin"}>Admin</Link>
+                      </li>
+                    )}
+                  </ul>
+                )}
+              </div>
               <Button
                 onClick={() => handleLogout()}
                 className="bg-[#0BBA48] text-white w-fit mt-2"
