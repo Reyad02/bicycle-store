@@ -79,6 +79,14 @@ const Admin_Poducts = () => {
       price: Number(data.price ?? bicycleInfo!.price),
       quantity: Number(data.quantity ?? bicycleInfo!.quantity),
       type: newType || bicycleInfo!.type,
+      color: data.color || bicycleInfo!.color,
+      material: data.material || bicycleInfo!.material,
+      torque: Number(data.torque || bicycleInfo!.torque),
+      frameSize: Number(data.frameSize || bicycleInfo!.frameSize),
+      seatpost: data.seatpost || bicycleInfo!.seatpost,
+      weight: Number(data.weight || bicycleInfo!.weight),
+      chain: data.chain || bicycleInfo!.chain,
+
     };
     const formData = new FormData();
     formData.append("data", JSON.stringify(updatedBicycleInfo));
@@ -180,9 +188,7 @@ const Admin_Poducts = () => {
                         alt="Avatar Tailwind CSS Component"
                       />
                     </div>
-                    <p>
-                      {item.name}
-                    </p>
+                    <p>{item.name}</p>
                   </td>
                   <td>{item.brand}</td>
                   <td>{item.type}</td>
@@ -196,7 +202,7 @@ const Admin_Poducts = () => {
                     )}
                   </td>
                   <td>${item.price}.00</td>
-                  <td >
+                  <td>
                     <div className="flex gap-4 ">
                       <Link to={`product-id/${item._id}`}>
                         <IoEye className="text-xl hover:text-[#0BBA48]" />
@@ -228,52 +234,108 @@ const Admin_Poducts = () => {
 
       {openModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg lg:w-1/3 relative">
-            <h2 className="text-2xl mb-4">Update Bicycle</h2>
-            <p>Name:</p>
+          <div className="bg-white px-6 pt-3 pb-4 rounded-lg lg:w-1/3 relative max-h-full overflow-y-auto">
+            <h2 className="text-2xl mb-2">Update Bicycle</h2>
             <PayFrom onSubmit={handleOrderFrom}>
-              <PayInput
-                name={"name"}
-                type={"text"}
-                placeholder={bicycleInfo?.name}
-                disabled={false}
-              />
-              <div>
-                <p>Type:</p>
-                <select
-                  name={"type"}
-                  className="w-full bg-transparent mb-5 border-[#E5E5E5] border px-2 py-1 rounded-md"
-                  defaultValue={bicycleInfo?.type}
-                  onChange={(e) => setNewType(e.target.value)}
-                >
-                  <option value="Mountain">Mountain</option>
-                  <option value="Road">Road</option>
-                  <option value="Hybrid">Hybrid</option>
-                  <option value="BMX">BMX</option>
-                  <option value="Electric">Electric</option>
-                </select>
+              <div className="flex items-center gap-4 ">
+                <div>
+                  <p>Name:</p>
+                  <PayInput
+                    name={"name"}
+                    type={"text"}
+                    placeholder={bicycleInfo?.name}
+                    disabled={false}
+                  />
+                  <p>Brand:</p>
+                  <PayInput
+                    name={"brand"}
+                    type={"text"}
+                    placeholder={bicycleInfo?.brand}
+                    disabled={false}
+                  />
+                  <p>Price:</p>
+                  <PayInput
+                    name={"price"}
+                    type={"number"}
+                    placeholder={String(bicycleInfo?.price)}
+                    disabled={false}
+                  />
+                  <div>
+                    <p>Type:</p>
+                    <select
+                      name={"type"}
+                      className="w-full bg-transparent  mb-5 border-[#a5a5a5] border-dashed border-2 px-2 py-1 rounded-md"
+                      defaultValue={bicycleInfo?.type}
+                      onChange={(e) => setNewType(e.target.value)}
+                    >
+                      <option value="Mountain">Mountain</option>
+                      <option value="Road">Road</option>
+                      <option value="Hybrid">Hybrid</option>
+                      <option value="BMX">BMX</option>
+                      <option value="Electric">Electric</option>
+                    </select>
+                  </div>
+                  <p>Quantity:</p>
+                  <PayInput
+                    name={"quantity"}
+                    type={"number"}
+                    placeholder={String(bicycleInfo?.quantity)}
+                    disabled={false}
+                  />
+                  <p>Color:</p>
+                  <PayInput
+                    name={"color"}
+                    type={"text"}
+                    placeholder={bicycleInfo?.color}
+                    disabled={false}
+                  />
+                </div>
+
+                <div>
+                  <p>Material</p>
+                  <PayInput
+                    name={"material"}
+                    type={"text"}
+                    placeholder={bicycleInfo?.material}
+                    disabled={false}
+                  />
+                  <p>Seatpost</p>
+                  <PayInput
+                    name={"seatpost"}
+                    type={"text"}
+                    placeholder={bicycleInfo?.seatpost}
+                    disabled={false}
+                  />
+                  <p>Weight</p>
+                  <PayInput
+                    name={"weight"}
+                    type={"text"}
+                    placeholder={String(bicycleInfo?.weight)}
+                    disabled={false}
+                  />
+                  <p>Torque</p>
+                  <PayInput
+                    name={"torque"}
+                    type={"text"}
+                    placeholder={String(bicycleInfo?.torque)}
+                    disabled={false}
+                  />
+                  <p>Frame Size</p>
+                  <PayInput
+                    name={"frameSize"}
+                    type={"text"}
+                    placeholder={String(bicycleInfo?.frameSize)}
+                    disabled={false}
+                  />
+                  <p>Chain</p>
+                  <PayInput
+                    name={"chain"}
+                    type={"text"}
+                    placeholder={bicycleInfo?.chain}
+                    disabled={false}
+                  />
+                </div>
               </div>
-              <p>Brand:</p>
-              <PayInput
-                name={"brand"}
-                type={"text"}
-                placeholder={bicycleInfo?.brand}
-                disabled={false}
-              />
-              <p>Quantity:</p>
-              <PayInput
-                name={"quantity"}
-                type={"number"}
-                placeholder={String(bicycleInfo?.quantity)}
-                disabled={false}
-              />
-              <p>Price:</p>
-              <PayInput
-                name={"price"}
-                type={"number"}
-                placeholder={String(bicycleInfo?.price)}
-                disabled={false}
-              />
               <p>Description:</p>
               <CustomTextArea
                 name="description"
@@ -281,7 +343,7 @@ const Admin_Poducts = () => {
                 placeholder={bicycleInfo?.description}
               ></CustomTextArea>
               <Button
-                className="bg-[#0BBA48] text-white w-full mt-2"
+                className="bg-[#0BBA48] text-white w-full "
                 type="submit"
               >
                 Update

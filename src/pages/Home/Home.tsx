@@ -110,42 +110,117 @@ const Home = () => {
 
       <div className="bg-[#F5F5F5]">
         <div className="max-w-7xl mx-auto py-20 ">
-          <div className="grid grid-cols-1 gap-16 md:gap-8 px-8  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-4 ">
-            {products?.data!.map(({ _id, name, brand, type, price, image }) => (
-              <div key={_id} className="card card-compact shadow-xl ">
-                <figure className="">
-                  <img
-                    src={
-                      image ||
-                      "https://i.postimg.cc/FHFYTMMS/surly-bridge-club-bike-275-black-BK01137-800x600.jpg"
-                    }
-                    alt="Shoes"
-                    className="object-cover h-48 w-full"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title text-center text-xl">{name}</h2>
-                  <hr />
-                  <p className="text-[#555555] text-base">
-                    Band:{" "}
-                    <span className="text-black font-semibold">{brand}</span>
-                  </p>
-                  <p className="text-[#555555] text-base">
-                    Type:{" "}
-                    <span className="text-black font-semibold">{type}</span>
-                  </p>
-                  <p className="text-[#555555] text-base">
-                    Price:{" "}
-                    <span className="text-black font-semibold">${price}</span>
-                  </p>
-                  <Link to={`/products/${_id}`} className="">
-                    <Button className="bg-[#0BBA48] btn-sm w-full text-sm text-white md:py-6 md:px-8">
-                      LEARN MORE
-                    </Button>{" "}
-                  </Link>
+          <div className="grid grid-cols-1 gap-16 md:gap-8 px-8  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-3 ">
+            {products?.data!.map(
+              ({
+                _id,
+                name,
+                brand,
+                // type,
+                price,
+                image,
+                chain,
+                color,
+                frameSize,
+                material,
+                torque,
+                seatpost,
+                weight,
+              }) => (
+                <div key={_id} className="card card-compact shadow-xl ">
+                  <figure className="">
+                    <img
+                      src={
+                        image ||
+                        "https://i.postimg.cc/FHFYTMMS/surly-bridge-club-bike-275-black-BK01137-800x600.jpg"
+                      }
+                      alt="Shoes"
+                      className="object-cover h-48 w-full"
+                    />
+                  </figure>
+                  <div className="card-body ">
+                    <p className=" text-[#555555]">
+                      Price:{" "}
+                      <span className="text-black text-lg font-semibold">
+                        ${price}.00
+                      </span>
+                    </p>
+                    <h2 className="card-title text-center text-xl">{name}</h2>
+                    <hr />
+                    <div className="flex flex-col justify-between">
+                      <div className="flex justify-between ">
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base flex-1 ">
+                            Color:{" "}
+                            <p className="text-black font-semibold">{color}</p>
+                          </p>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base flex-1 ">
+                            Material:{" "}
+                            <p className="text-black font-semibold">
+                              {material}
+                            </p>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-between ">
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base">
+                            Seatpost:{" "}
+                            <p className="text-black font-semibold">
+                              {seatpost}
+                            </p>
+                          </p>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base">
+                            Weight:{" "}
+                            <p className="text-black font-semibold">{weight} kg</p>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-between">
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base">
+                            Torque:{" "}
+                            <p className="text-black font-semibold">{torque} Nm</p>
+                          </p>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base">
+                            Frame Size:{" "}
+                            <p className="text-black font-semibold">
+                              {frameSize} cm
+                            </p>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-between">
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base">
+                            Chain:{" "}
+                            <p className="text-black font-semibold">{chain}</p>
+                          </p>
+                        </div>
+
+                        <div className="flex-1">
+                          <p className="text-[#555555] text-base">
+                            Brand:{" "}
+                            <p className="text-black font-semibold">{brand}</p>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <Link to={`/products/${_id}`} className="">
+                      <Button className="bg-[#0BBA48] btn-sm w-full text-sm text-white md:py-6 md:px-8">
+                        LEARN MORE
+                      </Button>{" "}
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </div>

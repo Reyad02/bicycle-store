@@ -97,13 +97,64 @@ const SingleProduct = () => {
                 MRP: ${product?.data?.price}
               </p>
             </div>
-            <div className="border border-[#555555] p-8 ">
+            <div className="border border-[#d2d2d2] p-8 ">
               <p className="text-xl font-semibold pb-2">SPECIFICATION</p>
               <div className="flex flex-col gap-2 text-[#555555]">
-                <p>Name: {product?.data?.name}</p>
-                <p>Brand: {product?.data?.brand}</p>
-                <p>Type: {product?.data?.type}</p>
-                <p>Available Quantity: {product?.data?.quantity}</p>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Name:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.name}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Brand:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.brand}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Type:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.type}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Color:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.color}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Material:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.material}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Seat post:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.seatpost}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Weight:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.weight} kg</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Torque:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.torque} Nm</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Frame Size:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.frameSize} cm</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Chain:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.chain}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">Available Quantity:</span>
+                  <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
+                  <span className="">{product?.data?.quantity}</span>
+                </div>
                 {Number(product?.data?.quantity) <= 0 && (
                   <>
                     <div className="badge badge-error text-black">
@@ -116,14 +167,16 @@ const SingleProduct = () => {
                     {/* <p className="mb-1">
                     Quantity<span className="text-red-600">*</span>
                   </p> */}
+                    <p className="text-xl font-semibold pb-2 text-black mt-8">Choose Quantity</p>
+
                     <PayInput
                       name={"quantity"}
                       type={"number"}
-                      placeholder={"Quantity"}
+                      placeholder={"How many you need..."}
                       disabled={disableBtn}
                     ></PayInput>
                     <Button
-                      className="bg-[#0BBA48] text-white w-full mt-2"
+                      className="bg-[#0BBA48] text-white w-full mt-4"
                       disabled={disableBtn}
                       type="submit"
                     >
