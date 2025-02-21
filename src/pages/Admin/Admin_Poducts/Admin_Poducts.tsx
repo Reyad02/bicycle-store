@@ -76,15 +76,15 @@ const Admin_Poducts = () => {
       name: data.name || bicycleInfo!.name,
       brand: data.brand || bicycleInfo!.brand,
       description: data.description || bicycleInfo!.description,
-      price: Number(data.price ?? bicycleInfo!.price),
-      quantity: Number(data.quantity ?? bicycleInfo!.quantity),
+      price: Number(data.price ? data.price : bicycleInfo!.price),
+      quantity: Number(data.quantity ? data.quantity : bicycleInfo!.quantity),
       type: newType || bicycleInfo!.type,
       color: data.color || bicycleInfo!.color,
       material: data.material || bicycleInfo!.material,
-      torque: Number(data.torque || bicycleInfo!.torque),
-      frameSize: Number(data.frameSize || bicycleInfo!.frameSize),
+      torque: Number(data.torque ? data.torque : bicycleInfo!.torque),
+      frameSize: Number(data.frameSize ? data.frameSize : bicycleInfo!.frameSize),
       seatpost: data.seatpost || bicycleInfo!.seatpost,
-      weight: Number(data.weight || bicycleInfo!.weight),
+      weight: Number(data.weight ? data.weight : bicycleInfo!.weight),
       chain: data.chain || bicycleInfo!.chain,
 
     };
@@ -179,13 +179,14 @@ const Admin_Poducts = () => {
                   className="text-base text-black text-center items-center hover:bg-gray-100 "
                 >
                   <td className="flex items-center gap-4">
-                    <div className="mask mask-squircle h-12 w-12">
+                    <div className="mask  h-12 w-12">
                       <img
                         src={
                           item.image ||
-                          "https://img.daisyui.com/images/profile/demo/2@94.webp"
+                          "https://i.postimg.cc/SNNxCpkt/a-red-bicycle-is-parked-on-a-street-photo.jpg"
                         }
-                        alt="Avatar Tailwind CSS Component"
+                        alt="Bicycle Image"
+                        className="object-cover"
                       />
                     </div>
                     <p>{item.name}</p>
@@ -201,7 +202,7 @@ const Admin_Poducts = () => {
                       </div>
                     )}
                   </td>
-                  <td>${item.price}.00</td>
+                  <td>${Number(item.price).toFixed(2)}</td>
                   <td>
                     <div className="flex gap-4 ">
                       <Link to={`product-id/${item._id}`}>

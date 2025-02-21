@@ -15,7 +15,6 @@ const Admin_Order = () => {
   const { data: orders } = useGetAllOrdersQuery([
     { name: "page", value: currentPage },
     { name: "limit", value: 14 },
-    
   ]);
   const [updateBicycleStatus] = useUpdateBicycleStatusMutation();
   const [openModal, setOpenModal] = useState(false);
@@ -30,29 +29,26 @@ const Admin_Order = () => {
       const orderId = order._id;
       const customerName = order.user?.name;
 
+      let totalAmount = 0;
+
       order.items.forEach((item: IItem) => {
-        const bicycleImage = item.bicycle.image;
-        const bicycleName = item.bicycle.name;
         const bicycleUnitPrice = item.bicycle.price;
         const bicycleQuantity = item.quantity;
         const currentBicycleTotalPrice =
           Number(bicycleUnitPrice) * Number(bicycleQuantity);
-        const orderStatus = order.status;
-
-        if (order?.paymentStatus !== "Unpaid") {
-          dataTransform.push({
-            bicycleImage,
-            bicycleName,
-            bicycleUnitPrice,
-            bicycleQuantity,
-            currentBicycleTotalPrice,
-            orderDate,
-            orderStatus,
-            orderId,
-            customerName,
-          });
-        }
+        totalAmount += currentBicycleTotalPrice;
       });
+
+      if (order?.paymentStatus !== "Unpaid") {
+        dataTransform.push({
+          orderId,
+          customerName,
+          totalAmount,
+          orderDate,
+          orderStatus: order.status,
+          items: order.items,
+        });
+      }
     });
   }
 
@@ -71,7 +67,6 @@ const Admin_Order = () => {
       orderId: orderId,
       data: { status: "Delivered" },
     });
-    console.log(res);
     if (isFetchBaseQueryError(res?.error)) {
       toast.error(`${(res?.error?.data as IError)?.message}`, {
         position: "bottom-right",
@@ -129,42 +124,35 @@ const Admin_Order = () => {
             <table className="table border border-black">
               <thead>
                 <tr className="text-base text-black text-center font-orbitron">
-                  <th>Product</th>
-                  <th>Unit Price</th>
-                  <th>Quantity</th>
-                  <th>Total Price</th>
+                  <th>Customer</th>
+                  <th>Total Amount</th>
                   <th>Status</th>
                   <th>Order Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {dataTransform.map((bicycle, index: number) => (
+                {dataTransform.map((order, index: number) => (
                   <tr className="text-base text-black text-center" key={index}>
-                    <td className="flex items-center gap-4 justify-center">
-                      {" "}
-                      {bicycle.bicycleName}
-                    </td>
-                    <td>${bicycle.bicycleUnitPrice}</td>
-                    <td>{bicycle.bicycleQuantity}</td>
-                    <td>${bicycle.currentBicycleTotalPrice}</td>
+                    <td>{order.customerName}</td>
+                    <td>${Number(order.totalAmount).toFixed(2)}</td>
                     <td>
-                      {bicycle.orderStatus === "Pending" ? (
+                      {order.orderStatus === "Pending" ? (
                         <p className="badge badge-sm badge-outline text-red-600">
                           Pending
                         </p>
                       ) : (
-                        <p className="badge badge-sm badge-outline text-[#0BBA48] ">
+                        <p className="badge badge-sm badge-outline text-[#0BBA48]">
                           Delivered
                         </p>
                       )}
                     </td>
-                    <td>{bicycle.orderDate}</td>
+                    <td>{order.orderDate}</td>
                     <td className="flex items-center gap-2 justify-center">
-                      {bicycle.orderStatus === "Pending" ? (
-                        <Button 
+                      {order.orderStatus === "Pending" ? (
+                        <Button
                           onClick={() =>
-                            updateOrderInfo(bicycle?.orderId as string)
+                            updateOrderInfo(order.orderId as string)
                           }
                           className={`text-black bg-transparent border border-gray-600 hover:text-white hover:bg-[#0BBA48] hover:border-[#0BBA48]`}
                         >
@@ -173,9 +161,9 @@ const Admin_Order = () => {
                       ) : (
                         <p>-</p>
                       )}
-                      <Button size={"sm"}
+                      <Button
                         onClick={() => {
-                          setOrderInfo(bicycle);
+                          setOrderInfo(order);
                           setOpenModal(true);
                         }}
                         className={`text-black bg-transparent border border-gray-600 hover:text-white hover:bg-[#0BBA48] hover:border-[#0BBA48]`}
@@ -191,24 +179,34 @@ const Admin_Order = () => {
         </div>
       </div>
 
-      {openModal && (
+      {openModal && orderInfo && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-2/3 lg:w-1/3 relative">
-            <h2 className="text-2xl mb-4 text-center">Order</h2>
-            <div className="flex flex-col gap-2">
-              <p>Customer: {orderInfo?.customerName}</p>
-              <p>Product: {orderInfo?.bicycleName}</p>
-              <p>Quantity: {orderInfo?.bicycleQuantity}</p>
-              <p>Unit Price: {orderInfo?.bicycleUnitPrice}</p>
-              <p>Total Price: {orderInfo?.currentBicycleTotalPrice}</p>
+          <div className="bg-white p-6 rounded-lg w-2/3 lg:w-1/3 relative font-inter  max-h-full overflow-y-auto">
+            <h2 className="text-2xl mb-4 text-center font-orbitron font-semibold">
+              Order Details
+            </h2>
+            <div className="flex flex-col gap-1">
+              <p className="text-lg">Customer: {orderInfo?.customerName}</p>
+              <p className="text-lg">Order Date: {orderInfo?.orderDate}</p>
+              <p className="text-lg">Status: {orderInfo?.orderStatus}</p>
+              <p className="text-lg">Total Amount: ${orderInfo?.totalAmount}</p>
+              <h3 className="text-lg">Items:</h3>
+              {orderInfo?.items?.map((item: IItem, index: number) => (
+                <div key={index} className="flex flex-col gap-1 mt-3">
+                  <p>Product: {item.bicycle.name}</p>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Unit Price: ${item.bicycle.price}</p>
+                  <p>Total Price: ${item.bicycle.price * item.quantity}</p>
+                </div>
+              ))}
             </div>
-            
+
             <Button
               className="bg-gray-300 text-black w-full mt-2"
               type="button"
               onClick={() => setOpenModal(false)}
             >
-              Cancel
+              Close
             </Button>
           </div>
         </div>

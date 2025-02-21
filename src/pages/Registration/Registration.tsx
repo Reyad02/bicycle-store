@@ -4,7 +4,7 @@ import PayInput from "../../components/CustomInput/CustomInput";
 import { Button } from "../../components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { FieldValues } from "react-hook-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "../../components/ui/input";
 import { useCreateUserMutation } from "../../redux/features/users/users";
 import { ICustomError, IError } from "../../types/error.type";
@@ -23,6 +23,7 @@ const Registration = () => {
   const navigate = useNavigate();
   const [sentImg, setSentImg] = useState(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFileChange = (event: any) => {
@@ -141,6 +142,11 @@ const Registration = () => {
         });
       }
     } else {
+      setSentImg(null);
+      setPreviewImage(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
       toast.success("Registration Successful", {
         position: "bottom-right",
         autoClose: 1000,
@@ -199,7 +205,12 @@ const Registration = () => {
                 <span className="text-gray-500 text-sm">No Image</span>
               </div>
             )}
-            <input type="file" accept="image/*" onChange={handleFileChange} />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+            />
           </div>
 
           <PayInput

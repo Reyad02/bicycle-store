@@ -8,6 +8,7 @@ import { RootState } from "../../redux/store";
 import { logout, TUser } from "../../redux/features/auth/authSlice";
 import { jwtDecode } from "jwt-decode";
 import UserRole from "../../Constants/Role";
+import { useGetMyProfileQuery } from "../../redux/features/users/users";
 
 interface ICustomNavLink {
   to: string;
@@ -38,6 +39,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [isProfileDropDown, setIsProfileDropDown] = useState(false);
   const profileDropdownRef = useRef<HTMLDivElement>(null);
+  const { data: loggedInUser } = useGetMyProfileQuery(undefined);
 
   const token = useSelector((state: RootState) => state.auth.token);
   let role = "";
@@ -177,7 +179,7 @@ const Navbar = () => {
                     <img
                       alt="Tailwind CSS Navbar component"
                       src={
-                        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        loggedInUser?.data?.profileImg ||"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                       }
                     />
                   </div>

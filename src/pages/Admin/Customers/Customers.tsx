@@ -1,11 +1,13 @@
 import { Button } from "../../../components/ui/button";
+import UserRole from "../../../Constants/Role";
 import {
   useGetUsersQuery,
   useUpdateUserMutation,
 } from "../../../redux/features/users/users";
 
 const Customers = () => {
-  const { data: users } = useGetUsersQuery(undefined);
+  const { data: usersResult } = useGetUsersQuery(undefined);
+  const users = usersResult?.data?.filter((singleUser) => singleUser.userType!==UserRole.admin)
   const [deactivateUser] = useUpdateUserMutation();
 
   function getFormattedDate(isoString: string, timeZone: string = "UTC") {
@@ -33,10 +35,10 @@ const Customers = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.data?.map((user, idx) => (
+            {users?.map((user, idx) => (
               <tr
                 key={idx}
-                className="text-base text-black text-center hover:bg-gray-100 "
+                className="text-base text-black text-center  hover:bg-gray-100 "
               >
                 <td>
                   <div className="avatar">
@@ -53,9 +55,8 @@ const Customers = () => {
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{getFormattedDate(user.createdAt)}</td>
-
-                <td className="flex gap-4">
+                <td className="">{getFormattedDate(user.createdAt)}</td>
+                <td className="">
                   <Button
                     onClick={() =>
                       deactivateUser({

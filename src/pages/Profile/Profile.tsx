@@ -81,7 +81,7 @@ const Profile = () => {
                 mySelf?.profileImg ||
                 "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
               }
-              className="w-32 rounded-full mb-2"
+              className="h-32 w-32 object-cover rounded-full mb-2"
               alt=""
             />
           </div>

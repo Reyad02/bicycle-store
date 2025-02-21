@@ -159,7 +159,7 @@ const Home = () => {
                     <p className=" text-[#555555]">
                       Price:{" "}
                       <span className="text-black text-base font-semibold font-inter">
-                        ${price}.00
+                        ${Number(price).toFixed(2)}
                       </span>
                     </p>
                     <h2 className="card-title text-center text-xl  font-orbitron">

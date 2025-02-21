@@ -41,7 +41,7 @@ const Admin_Home = () => {
             <div>
               <p className="text-[#0BBA48] font-inter">Total Income</p>
               <p className="text-2xl font-semibold text-black font-orbitron">
-                ${totalIncome?.data}.00
+                ${Number(totalIncome?.data).toFixed(2)}
               </p>
             </div>
           </div>
@@ -116,7 +116,7 @@ const Admin_Home = () => {
                       </div>
                     </td>
                     <td className=" font-inter">{item?.totalQuantity}</td>
-                    <td className=" font-inter">${item?.bicycleDetails?.price}.00</td>
+                    <td className=" font-inter">${Number(item?.bicycleDetails?.price).toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>

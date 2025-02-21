@@ -3,7 +3,7 @@ import PayFrom from "../../../components/CustomForm/CustomFrom";
 import PayInput from "../../../components/CustomInput/CustomInput";
 import CustomTextArea from "../../../components/CustomTextArea/CustomTextArea";
 import { Button } from "../../../components/ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useCreateBicycleMutation } from "../../../redux/features/bicycles/bicycleApi";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { ICustomError, IError } from "../../../types/error.type";
@@ -14,6 +14,7 @@ const Add_Product = () => {
   const [addBicycle] = useCreateBicycleMutation();
   const [sentImg, setSentImg] = useState(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFileChange = (event: any) => {
@@ -30,7 +31,7 @@ const Add_Product = () => {
   };
 
   const handleContactForm = async (data: FieldValues) => {
-    console.log(data.w);
+    // console.log(data.w);
     const bicycleInfo = {
       name: data.name,
       brand: data.brand,
@@ -79,6 +80,11 @@ const Add_Product = () => {
         });
       }
     } else {
+      setSentImg(null);
+      setPreviewImage(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
       toast.success(`${res?.data?.message}`, {
         position: "bottom-right",
         autoClose: 5000,
@@ -98,10 +104,11 @@ const Add_Product = () => {
         <PayFrom onSubmit={handleContactForm}>
           {" "}
           <div className="flex md:gap-4 items-center flex-col md:flex-row">
-            <input 
+            <input
               type="file"
               className="file-input file-input-sm text-sm w-full bg-transparent mb-4  shadow-sm border-[#a5a5a5] border-dashed border-2"
               onChange={handleFileChange}
+              ref={fileInputRef}
             />
             <div className="w-full">
               <div className="w-full h-48 flex items-center justify-center mb-4 shadow-sm border-[#a5a5a5] border-dashed border-2">

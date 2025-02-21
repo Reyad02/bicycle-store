@@ -36,14 +36,16 @@ export interface Bicycle {
 
 export interface IDataTransform {
   bicycleImage?: string;
-  bicycleName: string;
-  bicycleQuantity: number;
-  bicycleUnitPrice: number;
-  currentBicycleTotalPrice: number;
+  bicycleName?: string;
+  bicycleQuantity?: number;
+  bicycleUnitPrice?: number;
+  currentBicycleTotalPrice?: number;
   orderDate: string;
   orderStatus?: string;
   orderId?: string;
   customerName?: string;
+  totalAmount?: number;
+  items?: IItem[];
 }
 
 const MyOrders = () => {
@@ -55,7 +57,7 @@ const MyOrders = () => {
     orders.data.forEach((order: IOrder) => {
       const date = new Date(order.createdAt);
       const orderDate = date.toISOString().split("T")[0];
-
+      const orderStatus = order.status;
       order.items.forEach((item: IItem) => {
         const bicycleName = item.bicycle.name;
         const bicycleUnitPrice = item.bicycle.price;
@@ -69,12 +71,13 @@ const MyOrders = () => {
           bicycleQuantity,
           currentBicycleTotalPrice,
           orderDate,
+          orderStatus,
         });
       });
     });
   }
   const totalOrderPrice = dataTransform.reduce(
-    (sum, order) => sum + order.currentBicycleTotalPrice,
+    (sum, order) => sum + (order.currentBicycleTotalPrice as number),
     0
   );
 
@@ -90,6 +93,7 @@ const MyOrders = () => {
                   <th>Bicycle Name</th>
                   <th>Unit Price</th>
                   <th>Total Quantity</th>
+                  <th>Status</th>
                   <th>Total Price</th>
                 </tr>
               </thead>
@@ -100,6 +104,17 @@ const MyOrders = () => {
                     <td>{bicycle.bicycleName}</td>
                     <td>${bicycle.bicycleUnitPrice}</td>
                     <td>{bicycle.bicycleQuantity}</td>
+                    <td>
+                      {bicycle.orderStatus === "Pending" ? (
+                        <p className="badge badge-sm badge-outline text-red-600">
+                          Pending
+                        </p>
+                      ) : (
+                        <p className="badge badge-sm badge-outline text-[#0BBA48]">
+                          Delivered
+                        </p>
+                      )}
+                    </td>
                     <td>${bicycle.currentBicycleTotalPrice}</td>
                   </tr>
                 ))}
@@ -108,7 +123,8 @@ const MyOrders = () => {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>${totalOrderPrice}</td>
+                  <td></td>
+                  <td>${Number(totalOrderPrice).toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>

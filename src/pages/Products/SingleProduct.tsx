@@ -34,6 +34,25 @@ const SingleProduct = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOrderFrom = (data: any) => {
+    if(data.quantity){
+
+      const isInteger = !Number.isInteger(Number(data.quantity));
+    
+    if (isInteger) {
+      toast.error("Quantity must be a integer number", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+  }
+
     if (data.quantity > 0 && data.quantity <= product!.data!.quantity) {
       dispatch(
         addToCart({
@@ -88,7 +107,9 @@ const SingleProduct = () => {
                 className="w-full object-cover"
               />
             </div>
-            <p className="text-base mb-8 font-inter">Description: {product?.data?.description}</p>
+            <p className="text-base mb-8 font-inter">
+              Description: {product?.data?.description}
+            </p>
           </div>
 
           <div className="md:w-[38%] flex flex-col gap-8">
@@ -98,7 +119,9 @@ const SingleProduct = () => {
               </p>
             </div>
             <div className="border border-[#d2d2d2] p-8 ">
-              <p className="text-xl font-semibold pb-2 font-orbitron">SPECIFICATION</p>
+              <p className="text-xl font-semibold pb-2 font-orbitron">
+                SPECIFICATION
+              </p>
               <div className="flex flex-col gap-2 font-inter text-[#555555]">
                 <div className="flex items-center">
                   <span className="whitespace-nowrap">Name:</span>
@@ -167,7 +190,9 @@ const SingleProduct = () => {
                     {/* <p className="mb-1">
                     Quantity<span className="text-red-600">*</span>
                   </p> */}
-                    <p className="text-xl font-semibold pb-2 text-black mt-8 font-orbitron">Choose Quantity</p>
+                    <p className="text-xl font-semibold pb-2 text-black mt-8 font-orbitron">
+                      Choose Quantity
+                    </p>
 
                     <PayInput
                       name={"quantity"}
