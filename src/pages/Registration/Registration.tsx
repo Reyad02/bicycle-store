@@ -215,7 +215,7 @@ const Registration = () => {
             disabled={false}
           ></PayInput>
           <Input
-            className="mb-5"
+            className="mb-5 border-dashed border-2 border-[#a5a5a5] font-inter"
             name={"password"}
             type={"password"}
             placeholder={"Password"}
@@ -226,7 +226,7 @@ const Registration = () => {
             }}
           ></Input>
           <Input
-            className=""
+            className="border-dashed border-2 border-[#a5a5a5] font-inter"
             name={"confirm-password"}
             type={"password"}
             placeholder={"Confirm Password"}
@@ -248,7 +248,7 @@ const Registration = () => {
             Registration
           </Button>
         </PayFrom>
-        <p className="mt-4 text-center text-base">
+        <p className="mt-4 text-center text-base font-inter">
           If you already have an account then{" "}
           <Link className="text-[#0BBA48]" to="/login">
             login

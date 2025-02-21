@@ -88,18 +88,18 @@ const SingleProduct = () => {
                 className="w-full object-cover"
               />
             </div>
-            <p className="text-lg mb-8">{product?.data?.description}</p>
+            <p className="text-base mb-8 font-inter">Description: {product?.data?.description}</p>
           </div>
 
           <div className="md:w-[38%] flex flex-col gap-8">
             <div className="bg-[#0BBA48] w-full p-8">
-              <p className="text-white font-semibold text-3xl">
+              <p className="text-white font-semibold text-3xl font-orbitron">
                 MRP: ${product?.data?.price}
               </p>
             </div>
             <div className="border border-[#d2d2d2] p-8 ">
-              <p className="text-xl font-semibold pb-2">SPECIFICATION</p>
-              <div className="flex flex-col gap-2 text-[#555555]">
+              <p className="text-xl font-semibold pb-2 font-orbitron">SPECIFICATION</p>
+              <div className="flex flex-col gap-2 font-inter text-[#555555]">
                 <div className="flex items-center">
                   <span className="whitespace-nowrap">Name:</span>
                   <span className="flex-grow border-dashed  border-t-2 border-[#a5a5a5] mx-2 text-center "></span>
@@ -167,7 +167,7 @@ const SingleProduct = () => {
                     {/* <p className="mb-1">
                     Quantity<span className="text-red-600">*</span>
                   </p> */}
-                    <p className="text-xl font-semibold pb-2 text-black mt-8">Choose Quantity</p>
+                    <p className="text-xl font-semibold pb-2 text-black mt-8 font-orbitron">Choose Quantity</p>
 
                     <PayInput
                       name={"quantity"}

@@ -79,13 +79,13 @@ const MyOrders = () => {
   );
 
   return orders?.data?.length > 0 ? (
-    <div className="bg-[#F5F5F5]">
+    <div className="bg-[#F5F5F5] font-inter">
       <div className="max-w-7xl mx-auto py-6">
         <div className="flex flex-col max-w-7xl py-6 mx-auto">
           <div className="overflow-x-auto">
             <table className="table">
               <thead>
-                <tr className="text-base text-black text-center">
+                <tr className="text-base text-black text-center font-orbitron">
                   <th>Order Date</th>
                   <th>Bicycle Name</th>
                   <th>Unit Price</th>
@@ -103,7 +103,7 @@ const MyOrders = () => {
                     <td>${bicycle.currentBicycleTotalPrice}</td>
                   </tr>
                 ))}
-                <tr className=" text-base text-black text-center font-semibold text-lg">
+                <tr className=" font-orbitron text-black text-center font-semibold text-lg">
                   <td>Total</td>
                   <td></td>
                   <td></td>

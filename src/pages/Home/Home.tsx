@@ -15,7 +15,7 @@ const Home = () => {
     //   name: "searchTerm",
     //   value: "dur",
     // },
-    { name: "limit", value: 8 },
+    { name: "limit", value: 6 },
   ]);
 
   return (
@@ -110,6 +110,21 @@ const Home = () => {
 
       <div className="bg-[#F5F5F5]">
         <div className="max-w-7xl mx-auto py-20 ">
+          <div className="max-w-xl mx-auto flex flex-col justify-center items-center gap-2 mb-16">
+            <p className="text-lg font-thin">
+              -------------
+              <span className="text-[#0BBA48] font-orbitron">Our Products</span>
+              -----------
+            </p>
+            <h1 className="text-4xl font-semibold font-orbitron">
+            Featured Products
+            </h1>
+            <p className="text-[#555555] text-center font-inter">
+              You can ride to improve your fitness, you can ride further and
+              carry more gear, you can leave the car at home and help save the
+              environment.
+            </p>
+          </div>
           <div className="grid grid-cols-1 gap-16 md:gap-8 px-8  md:px-4 lg:px-0 md:grid-cols-2 lg:grid-cols-3 ">
             {products?.data!.map(
               ({
@@ -138,25 +153,27 @@ const Home = () => {
                       className="object-cover h-48 w-full"
                     />
                   </figure>
-                  <div className="card-body ">
+                  <div className="card-body font-inter ">
                     <p className=" text-[#555555]">
                       Price:{" "}
-                      <span className="text-black text-lg font-semibold">
+                      <span className="text-black text-base font-semibold font-inter">
                         ${price}.00
                       </span>
                     </p>
-                    <h2 className="card-title text-center text-xl">{name}</h2>
+                    <h2 className="card-title text-center text-xl  font-orbitron">
+                      {name}
+                    </h2>
                     <hr />
-                    <div className="flex flex-col justify-between">
+                    <div className="flex flex-col justify-between gap-2 text-sm">
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base flex-1 ">
+                          <p className="text-[#555555]  flex-1 ">
                             Color:{" "}
                             <p className="text-black font-semibold">{color}</p>
                           </p>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base flex-1 ">
+                          <p className="text-[#555555] flex-1 ">
                             Material:{" "}
                             <p className="text-black font-semibold">
                               {material}
@@ -166,7 +183,7 @@ const Home = () => {
                       </div>
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Seatpost:{" "}
                             <p className="text-black font-semibold">
                               {seatpost}
@@ -174,21 +191,25 @@ const Home = () => {
                           </p>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Weight:{" "}
-                            <p className="text-black font-semibold">{weight} kg</p>
+                            <p className="text-black font-semibold">
+                              {weight} kg
+                            </p>
                           </p>
                         </div>
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Torque:{" "}
-                            <p className="text-black font-semibold">{torque} Nm</p>
+                            <p className="text-black font-semibold">
+                              {torque} Nm
+                            </p>
                           </p>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Frame Size:{" "}
                             <p className="text-black font-semibold">
                               {frameSize} cm
@@ -198,14 +219,14 @@ const Home = () => {
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Chain:{" "}
                             <p className="text-black font-semibold">{chain}</p>
                           </p>
                         </div>
 
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Brand:{" "}
                             <p className="text-black font-semibold">{brand}</p>
                           </p>
@@ -213,7 +234,7 @@ const Home = () => {
                       </div>
                     </div>
                     <Link to={`/products/${_id}`} className="">
-                      <Button className="bg-[#0BBA48] btn-sm w-full text-sm text-white md:py-6 md:px-8">
+                      <Button className="bg-[#0BBA48] btn-sm w-full text-sm mt-2 text-white md:py-6 md:px-8">
                         LEARN MORE
                       </Button>{" "}
                     </Link>
@@ -222,6 +243,13 @@ const Home = () => {
               )
             )}
           </div>
+          {/* <div className="flex justify-center pt-8">
+            <Link to={`/products`} className="">
+              <Button className=" btn-sm w-full text-sm mt-2 bg-white text-[#0BBA48] md:py-6 md:px-8">
+                LEARN MORE
+              </Button>{" "}
+            </Link>
+          </div> */}
         </div>
       </div>
 

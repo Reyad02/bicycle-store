@@ -100,7 +100,7 @@ const Navbar = () => {
             {isDropDown && (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow font-inter"
               >
                 <li>
                   <CustomNavLink to="/" onClick={closeDropdown}>
@@ -126,7 +126,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 font-inter">
             <li>
               <CustomNavLink to="/">Home</CustomNavLink>
             </li>
@@ -185,7 +185,7 @@ const Navbar = () => {
                 {isProfileDropDown && (
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                    className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 font-inter shadow"
                   >
                     <li
                       onClick={() => setIsProfileDropDown(!isProfileDropDown)}

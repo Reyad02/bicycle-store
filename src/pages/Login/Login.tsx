@@ -88,7 +88,7 @@ const Login = () => {
               Login
             </Button>
           </PayFrom>
-          <p className="mt-4 text-center text-base">
+          <p className="mt-4 text-center text-base font-inter">
             You don't have any account then{" "}
             <Link className="text-[#0BBA48]" to="/sign-up">
               Sign Up

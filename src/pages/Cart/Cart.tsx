@@ -79,7 +79,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-[#F5F5F5]">
+    <div className="bg-[#F5F5F5] font-inter">
       <ToastContainer />
       {itemsInCart.length > 0 ? (
         <div className="flex flex-col max-w-7xl py-6  mx-auto">
@@ -88,10 +88,10 @@ const Cart = () => {
               <thead>
                 <tr className=" text-base text-black text-center">
                   <th></th>
-                  <th className="">Name</th>
-                  <th>Quantity</th>
-                  <th>Unit Price</th>
-                  <th>Total Price</th>
+                  <th className="font-orbitron">Name</th>
+                  <th className="font-orbitron">Quantity</th>
+                  <th className="font-orbitron">Unit Price</th>
+                  <th className="font-orbitron">Total Price</th>
                   <th>
                     <Button
                       onClick={clearCart}
@@ -120,7 +120,7 @@ const Cart = () => {
                     </td>
                   </tr>
                 ))}
-                <tr className=" text-base text-black text-center font-semibold text-lg">
+                <tr className=" font-orbitron text-black text-center font-semibold text-lg">
                   <td>Total</td>
                   <td></td>
                   <td></td>

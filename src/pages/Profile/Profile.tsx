@@ -85,14 +85,14 @@ const Profile = () => {
               alt=""
             />
           </div>
-          <div className="flex flex-col gap-2 items-center ">
+          <div className="flex flex-col gap-2 items-center font-inter">
             <p className="">Name: {mySelf?.name}</p>
             <p className="">Email: {mySelf?.email}</p>
           </div>
         </div>
 
-        <div className="">
-          <p className="text-lg text-center mb-2 font-semibold">
+        <div className="font-inter">
+          <p className="text-lg text-center mb-2 font-semibold font-orbitron">
             Change Password
           </p>
           <form

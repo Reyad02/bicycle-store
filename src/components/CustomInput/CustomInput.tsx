@@ -21,7 +21,7 @@ const PayInput = ({ type, name, placeholder, disabled }: ICustomInput) => {
             type={type}
             {...field}
             disabled={disabled}
-            className="border-dashed border-2 border-[#a5a5a5]"
+            className="border-dashed border-2 border-[#a5a5a5] font-inter"
           />
         )}
       />

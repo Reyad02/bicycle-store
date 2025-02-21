@@ -18,9 +18,9 @@ const SwiperSlideContent = ({
   description,
 }: Omit<ISwiperSlide, "img">) => {
   return (
-    <div className="absolute inset-0 flex flex-col justify-center gap-2 md:gap-6 lg:gap-8 left-[3%] md:left-[7%] max-w-xl">
-      <h1 className="text-xl md:text-4xl font-semibold lg:text-6xl">{title}</h1>
-      <p className="text-sm text-[#555555] md:text-lg">{description}</p>
+    <div className="absolute inset-0 flex flex-col justify-center gap-2 md:gap-6 lg:gap-8 left-[0%] md:left-[7%] max-w-xl items-center text-center md:items-start md:text-left">
+      <h1 className="text-xl md:text-4xl font-semibold lg:text-5xl  font-orbitron">{title}</h1>
+      <p className="text-sm text-[#555555] md:text-lg font-inter px-2 md:px-0">{description}</p>
       <Button className="bg-[#0BBA48] btn-sm text-sm text-white md:py-6 w-fit md:px-8">
         LEARN MORE
       </Button>
@@ -46,15 +46,15 @@ const Hero = () => {
   const sliderContent: ISwiperSlide[] = [
     {
       img: "https://i.postimg.cc/sXcxvDB6/slide1.jpg",
-      title: "On Road Off Road Any Road",
+      title: "On-Road Off-Road Any Road",
       description:
         "It's the most advanced, best performing alloy race bike ever made. Fitting, since aluminum is the 13th element.",
     },
     {
       img: "https://i.postimg.cc/3NqKvy3B/home-1-slider-2.jpg",
-      title: "On Road Off Road Any Road",
+      title: "Break Free From The Same Roads",
       description:
-        "It's the most advanced, best performing alloy race bike ever made. Fitting, since aluminum is the 13th element.",
+        "Don’t overthink it. Mellow to mad. Wild to mild. Whatever your trail riding style, Habit’s got what you need.",
     },
   ];
   return (

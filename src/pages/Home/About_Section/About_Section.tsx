@@ -30,8 +30,8 @@ export const About_Card = ({
         </div>
       )}
 
-      <h1 className="text-xl font-semibold">{title}</h1>
-      <p className="text-[#555555]">{description}</p>
+      <h1 className="text-xl font-semibold font-orbitron">{title}</h1>
+      <p className="text-[#555555] font-inter">{description}</p>
     </>
   );
 };
@@ -52,8 +52,8 @@ const About_Section = () => {
             alt=""
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-2xl ">Tagioa Sique</p>
+        <div className="flex flex-col gap-0.5">
+          <p className="text-2xl  font-orbitron">Tagioa Sique</p>
           <p className="text-[#555555]">CEO of BICYCLE </p>
         </div>
       </div>

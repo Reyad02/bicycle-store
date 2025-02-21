@@ -104,7 +104,7 @@ const Products = () => {
                 {/* brand  */}
                 <ul className="menu items-start min-w-full text-black p-4 ">
                   <div className="">
-                    <h1 className="font-semibold text-xl mb-4 ">Brands</h1>
+                    <h1 className="font-semibold text-xl mb-4 font-orbitron">Brands</h1>
                     <div className="flex flex-col gap-2 ">
                       {brands?.data?.map((brand: string, idx: number) => (
                         <div key={idx} className="flex items-center gap-4 ">
@@ -115,7 +115,7 @@ const Products = () => {
                           <div className="grid gap-1.5 leading-none">
                             <label
                               htmlFor={brand}
-                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              className="text-sm font-medium leading-none font-inter peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
                               {brand}
                             </label>
@@ -128,10 +128,10 @@ const Products = () => {
 
                 {/* dropdown  */}
                 <div className="p-4">
-                  <h1 className="font-semibold text-xl mb-2">Sort by Price</h1>
+                  <h1 className="font-semibold text-xl mb-2 font-orbitron">Sort by Price</h1>
 
                   <select
-                    className="bg-transparent border w-full border-slate-500"
+                    className="bg-transparent border w-full border-slate-500 font-inter"
                     onChange={(event) => setSort(event.target.value)}
                     defaultValue=""
                   >
@@ -175,20 +175,25 @@ const Products = () => {
                       className="object-cover h-48 w-full"
                     />
                   </figure>
-                  <div className="card-body">
-                    <p className=" text-[#555555]">Price: <span className="text-black text-lg font-semibold">${price}.00</span></p>
-                    <h2 className="card-title text-center text-xl">{name}</h2>
+                  <div className="card-body font-inter ">
+                    <p className=" text-[#555555]">
+                      Price:{" "}
+                      <span className="text-black text-base font-semibold font-inter">
+                        ${price}.00
+                      </span>
+                    </p>
+                    <h2 className="card-title text-center text-xl  font-orbitron">{name}</h2>
                     <hr />
-                    <div className="flex flex-col justify-between">
+                    <div className="flex flex-col justify-between gap-2 text-sm">
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base flex-1 ">
+                          <p className="text-[#555555]  flex-1 ">
                             Color:{" "}
                             <p className="text-black font-semibold">{color}</p>
                           </p>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base flex-1 ">
+                          <p className="text-[#555555] flex-1 ">
                             Material:{" "}
                             <p className="text-black font-semibold">
                               {material}
@@ -198,7 +203,7 @@ const Products = () => {
                       </div>
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Seatpost:{" "}
                             <p className="text-black font-semibold">
                               {seatpost}
@@ -206,21 +211,25 @@ const Products = () => {
                           </p>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Weight:{" "}
-                            <p className="text-black font-semibold">{weight} kg</p>
+                            <p className="text-black font-semibold">
+                              {weight} kg
+                            </p>
                           </p>
                         </div>
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Torque:{" "}
-                            <p className="text-black font-semibold">{torque} Nm</p>
+                            <p className="text-black font-semibold">
+                              {torque} Nm
+                            </p>
                           </p>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Frame Size:{" "}
                             <p className="text-black font-semibold">
                               {frameSize} cm
@@ -230,14 +239,14 @@ const Products = () => {
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Chain:{" "}
                             <p className="text-black font-semibold">{chain}</p>
                           </p>
                         </div>
 
                         <div className="flex-1">
-                          <p className="text-[#555555] text-base">
+                          <p className="text-[#555555] ">
                             Brand:{" "}
                             <p className="text-black font-semibold">{brand}</p>
                           </p>
@@ -246,7 +255,7 @@ const Products = () => {
                     </div>
 
                     <Link to={`/products/${_id}`} className="">
-                      <Button className="bg-[#0BBA48] btn-sm w-full text-sm text-white md:py-6 md:px-8">
+                      <Button className="bg-[#0BBA48] btn-sm w-full text-sm mt-2 text-white md:py-6 md:px-8">
                         LEARN MORE
                       </Button>{" "}
                     </Link>

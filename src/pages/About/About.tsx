@@ -58,11 +58,11 @@ const About = () => {
       <div className="max-w-7xl mx-auto py-20">
         <div className="max-w-xl mx-auto flex flex-col justify-center items-center gap-2 mb-8">
           <p className="text-lg font-thin">
-            -------------<span className="text-[#0BBA48]">THE TEAM</span>
+            -------------<span className="text-[#0BBA48] font-orbitron">THE TEAM</span>
             -----------
           </p>
-          <h1 className="text-4xl font-semibold">Meet Our Team</h1>
-          <p className="text-[#555555] text-center">
+          <h1 className="text-4xl font-semibold font-orbitron">Meet Our Team</h1>
+          <p className="text-[#555555] text-center font-inter">
             You can ride to improve your fitness, you can ride further and carry
             more gear, you can leave the car at home and help save the
             environment.

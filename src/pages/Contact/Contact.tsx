@@ -40,8 +40,8 @@ const Contact = () => {
                 description=""
                 section="Visit our Offices"
               ></Section_Heading>
-              <div className="flex flex-col gap-2 mt-8 items-center md:items-start">
-                <p className="font-semibold text-xl lg:text-2xl">
+              <div className="flex flex-col gap-2 mt-8 items-center md:items-start font-inter">
+                <p className="font-semibold text-xl lg:text-2xl font-orbitron">
                   UNITED STATES
                 </p>
                 <p>1095 Howard Street, San Francisco</p>
@@ -53,7 +53,7 @@ const Contact = () => {
           <div className="w-full lg:w-[70%]">
             <PayFrom onSubmit={handleContactForm}>
               {" "}
-              <div className="flex  md:gap-4 w-full flex-col md:flex-row">
+              <div className="flex  md:gap-4 w-full flex-col md:flex-row font-inter">
                 <div className="w-full">
                   <p className="mb-1 pl-2 text-[#555555]">Your Name</p>
                   <PayInput
