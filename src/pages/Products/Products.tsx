@@ -104,7 +104,9 @@ const Products = () => {
                 {/* brand  */}
                 <ul className="menu items-start min-w-full text-black p-4 ">
                   <div className="">
-                    <h1 className="font-semibold text-xl mb-4 font-orbitron">Brands</h1>
+                    <h1 className="font-semibold text-xl mb-4 font-orbitron">
+                      Brands
+                    </h1>
                     <div className="flex flex-col gap-2 ">
                       {brands?.data?.map((brand: string, idx: number) => (
                         <div key={idx} className="flex items-center gap-4 ">
@@ -128,7 +130,9 @@ const Products = () => {
 
                 {/* dropdown  */}
                 <div className="p-4">
-                  <h1 className="font-semibold text-xl mb-2 font-orbitron">Sort by Price</h1>
+                  <h1 className="font-semibold text-xl mb-2 font-orbitron">
+                    Sort by Price
+                  </h1>
 
                   <select
                     className="bg-transparent border w-full border-slate-500 font-inter"
@@ -182,74 +186,76 @@ const Products = () => {
                         ${price}.00
                       </span>
                     </p>
-                    <h2 className="card-title text-center text-xl  font-orbitron">{name}</h2>
+                    <h2 className="card-title text-center text-xl  font-orbitron">
+                      {name}
+                    </h2>
                     <hr />
                     <div className="flex flex-col justify-between gap-2 text-sm">
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555]  flex-1 ">
+                          <div className="text-[#555555]  flex-1 ">
                             Color:{" "}
                             <p className="text-black font-semibold">{color}</p>
-                          </p>
+                          </div>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] flex-1 ">
+                          <div className="text-[#555555] flex-1 ">
                             Material:{" "}
                             <p className="text-black font-semibold">
                               {material}
                             </p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Seatpost:{" "}
                             <p className="text-black font-semibold">
                               {seatpost}
                             </p>
-                          </p>
+                          </div>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Weight:{" "}
                             <p className="text-black font-semibold">
                               {weight} kg
                             </p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Torque:{" "}
                             <p className="text-black font-semibold">
                               {torque} Nm
                             </p>
-                          </p>
+                          </div>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Frame Size:{" "}
                             <p className="text-black font-semibold">
                               {frameSize} cm
                             </p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Chain:{" "}
                             <p className="text-black font-semibold">{chain}</p>
-                          </p>
+                          </div>
                         </div>
 
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Brand:{" "}
                             <p className="text-black font-semibold">{brand}</p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                     </div>

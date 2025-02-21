@@ -7,16 +7,18 @@ import { useGetAllBicyclesQuery } from "../../redux/features/bicycles/bicycleApi
 import Marquee from "react-fast-marquee";
 import ScrollToTop from "react-scroll-to-top";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Home = () => {
   const { data: products } = useGetAllBicyclesQuery([
-    // { name: "page", value: 2 },
-    // {
-    //   name: "searchTerm",
-    //   value: "dur",
-    // },
     { name: "limit", value: 6 },
   ]);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <>
@@ -41,10 +43,10 @@ const Home = () => {
       <div className="bg-[#F5F5F5]">
         <div className="max-w-7xl mx-auto py-20 flex flex-col gap-20 ">
           <div className="flex justify-between flex-col md:flex-row px-4 md:px-2 lg:px-0 gap-6 md:gap-0">
-            <div className="w-full  md:w-[48%] relative ">
+            <div className="w-full  md:w-[48%] relative "  data-aos="fade-right">
               <Shining_images_part img="https://i.postimg.cc/d3VFJ3HJ/7e01a499-25f8-4f4d-a8c0-dfef0ab44f51-1.jpg" />
             </div>
-            <div className="w-full md:w-[48%] flex flex-col gap-4">
+            <div className="w-full md:w-[48%] flex flex-col gap-4"  data-aos="fade-left">
               <Section_Heading
                 section="Our Services"
                 title="Bicycles Are Our Works, But Also Our Passion"
@@ -59,10 +61,10 @@ const Home = () => {
           </div>
 
           <div className="flex justify-between flex-col md:flex-row-reverse items-center px-4 md:px-2 lg:px-0 gap-6 md:gap-0">
-            <div className="w-full md:w-[48%] relative">
+            <div className="w-full md:w-[48%] relative"  data-aos="fade-left">
               <Shining_images_part img="https://i.postimg.cc/prcHrv4z/234.jpg" />
             </div>
-            <div className="w-full md:w-[48%] flex flex-col gap-4">
+            <div className="w-full md:w-[48%] flex flex-col gap-4"  data-aos="fade-right">
               <Section_Heading
                 section="WHY CHOOSE US"
                 title="Ride With Style, Convenient, Safe And Relaxed"
@@ -117,7 +119,7 @@ const Home = () => {
               -----------
             </p>
             <h1 className="text-4xl font-semibold font-orbitron">
-            Featured Products
+              Featured Products
             </h1>
             <p className="text-[#555555] text-center font-inter">
               You can ride to improve your fitness, you can ride further and
@@ -142,7 +144,7 @@ const Home = () => {
                 seatpost,
                 weight,
               }) => (
-                <div key={_id} className="card card-compact shadow-xl ">
+                <div key={_id} className="card card-compact shadow-xl "  data-aos="fade-right">
                   <figure className="">
                     <img
                       src={
@@ -167,69 +169,69 @@ const Home = () => {
                     <div className="flex flex-col justify-between gap-2 text-sm">
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555]  flex-1 ">
+                          <div className="text-[#555555]  flex-1 ">
                             Color:{" "}
                             <p className="text-black font-semibold">{color}</p>
-                          </p>
+                          </div>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] flex-1 ">
+                          <div className="text-[#555555] flex-1 ">
                             Material:{" "}
                             <p className="text-black font-semibold">
                               {material}
                             </p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between ">
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Seatpost:{" "}
                             <p className="text-black font-semibold">
                               {seatpost}
                             </p>
-                          </p>
+                          </div>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Weight:{" "}
                             <p className="text-black font-semibold">
                               {weight} kg
                             </p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Torque:{" "}
                             <p className="text-black font-semibold">
                               {torque} Nm
                             </p>
-                          </p>
+                          </div>
                         </div>
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Frame Size:{" "}
                             <p className="text-black font-semibold">
                               {frameSize} cm
                             </p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between">
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Chain:{" "}
                             <p className="text-black font-semibold">{chain}</p>
-                          </p>
+                          </div>
                         </div>
 
                         <div className="flex-1">
-                          <p className="text-[#555555] ">
+                          <div className="text-[#555555] ">
                             Brand:{" "}
                             <p className="text-black font-semibold">{brand}</p>
-                          </p>
+                          </div>
                         </div>
                       </div>
                     </div>
