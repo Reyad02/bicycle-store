@@ -71,6 +71,7 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["orders"],
     }),
     getTotalPending: builder.query({
       query: () => {
@@ -79,6 +80,7 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["orders"],
     }),
     getTopSellingProducts: builder.query({
       query: () => {

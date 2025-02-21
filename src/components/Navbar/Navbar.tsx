@@ -194,11 +194,13 @@ const Navbar = () => {
                         Profile
                       </Link>
                     </li>
-                    <li
-                      onClick={() => setIsProfileDropDown(!isProfileDropDown)}
-                    >
-                      <Link to={"/my-account"}>Orders</Link>
-                    </li>
+                    {role !== UserRole.admin && (
+                      <li
+                        onClick={() => setIsProfileDropDown(!isProfileDropDown)}
+                      >
+                        <Link to={"/my-account"}>My Orders</Link>
+                      </li>
+                    )}
                     {role === UserRole.admin && (
                       <li
                         onClick={() => setIsProfileDropDown(!isProfileDropDown)}

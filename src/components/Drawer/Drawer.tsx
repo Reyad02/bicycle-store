@@ -47,7 +47,7 @@ const Drawer = () => {
         ></label>
 
         <div className="bg-slate-100 lg:bg-transparent h-full lg:w-full flex flex-col">
-          <ul className="menu flex flex-col border items-start min-w-full text-black p-4 gap-1 h-full">
+          <ul className="menu flex flex-col border items-start min-w-full text-black p-4 gap-1 h-full font-inter text-sm">
             <li>
               <NavLink
                 to={"/admin"}
@@ -86,7 +86,7 @@ const Drawer = () => {
                 >
                   Products Management
                 </summary>
-                <ul>
+                <ul className="font-inter">
                   <li className="hover:bg-[#0BBA48] hover:text-white mt-1 rounded-lg">
                     <NavLink
                       onClick={() => {
@@ -152,12 +152,28 @@ const Drawer = () => {
                 Orders
               </NavLink>
             </li>
+            <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white">
+              <NavLink
+                onClick={() => {
+                  setProductActive(false);
+                }}
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "#1C1C1C",
+                  backgroundColor: isActive ? "#0BBA48" : "transparent",
+                  fontWeight: isActive ? "bold" : "normal",
+                })}
+                className={"hover:text-white"}
+                to="/"
+              >
+                Customer View
+              </NavLink>
+            </li>
             <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white lg:mt-auto hidden lg:block ">
               <NavLink
                 onClick={() => {
                   handleLogout();
                 }}
-                className={"hover:text-white"}
+                className={"hover:text-white bg-[#0BBA48]" }
                 to="/login"
               >
                 <IoIosLogOut className="text-base"/>

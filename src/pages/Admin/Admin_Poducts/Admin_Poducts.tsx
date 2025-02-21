@@ -134,7 +134,7 @@ const Admin_Poducts = () => {
 
   return (
     <>
-      <div className="mx-auto z-10">
+      <div className="mx-auto z-10  font-inter">
         <ToastContainer />
 
         <div className="flex justify-end items-center gap-2 mb-2">
@@ -163,7 +163,7 @@ const Admin_Poducts = () => {
         <div className="overflow-x-auto">
           <table className="table border border-black">
             <thead>
-              <tr className="text-base text-black text-center">
+              <tr className="text-base text-black text-center  font-orbitron">
                 <th className="text-left">Product</th>
                 <th>Brand</th>
                 <th className="">Type</th>

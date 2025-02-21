@@ -19,12 +19,12 @@ const Customers = () => {
     });
   }
   return (
-    <div>
+    <div className="font-inter">
       {" "}
       <div className="overflow-x-auto">
         <table className="table border border-black">
           <thead>
-            <tr className="text-base text-black text-center">
+            <tr className="text-base text-black text-center font-orbitron">
               <th></th>
               <th>Name</th>
               <th>Email</th>

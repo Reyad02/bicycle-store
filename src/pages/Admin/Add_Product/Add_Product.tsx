@@ -94,11 +94,11 @@ const Add_Product = () => {
   return (
     <div>
       <ToastContainer />
-      <div>
+      <div className="font-inter">
         <PayFrom onSubmit={handleContactForm}>
           {" "}
           <div className="flex md:gap-4 items-center flex-col md:flex-row">
-            <input
+            <input 
               type="file"
               className="file-input file-input-sm text-sm w-full bg-transparent mb-4  shadow-sm border-[#a5a5a5] border-dashed border-2"
               onChange={handleFileChange}

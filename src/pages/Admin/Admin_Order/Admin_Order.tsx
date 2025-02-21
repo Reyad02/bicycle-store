@@ -15,6 +15,7 @@ const Admin_Order = () => {
   const { data: orders } = useGetAllOrdersQuery([
     { name: "page", value: currentPage },
     { name: "limit", value: 14 },
+    
   ]);
   const [updateBicycleStatus] = useUpdateBicycleStatusMutation();
   const [openModal, setOpenModal] = useState(false);
@@ -97,7 +98,7 @@ const Admin_Order = () => {
   };
 
   return (orders?.data as IOrder[])?.length > 0 ? (
-    <div className="bg-[#F5F5F5]">
+    <div className="bg-[#F5F5F5] font-inter">
       <ToastContainer />
       <div className="max-w-7xl mx-auto ">
         <div className="flex flex-col max-w-7xl mx-auto">
@@ -127,7 +128,7 @@ const Admin_Order = () => {
           <div className="overflow-x-auto">
             <table className="table border border-black">
               <thead>
-                <tr className="text-base text-black text-center">
+                <tr className="text-base text-black text-center font-orbitron">
                   <th>Product</th>
                   <th>Unit Price</th>
                   <th>Quantity</th>
