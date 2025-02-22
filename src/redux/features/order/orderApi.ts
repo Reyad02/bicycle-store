@@ -47,7 +47,7 @@ const orderApi = baseApi.injectEndpoints({
     }),
     updateBicycleStatus: builder.mutation({
       query: ({ orderId, data }) => {
-        console.log(orderId, data);
+        // console.log(orderId, data);
         return {
           url: `/orders/${orderId}`,
           method: "PUT",

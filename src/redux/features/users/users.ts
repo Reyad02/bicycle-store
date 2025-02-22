@@ -30,7 +30,7 @@ const userApi = baseApi.injectEndpoints({
       invalidatesTags: ["users"],
     }),
     createUser: builder.mutation({
-      query: ({formData}) => {
+      query: ({ formData }) => {
         return {
           url: "/users",
           method: "POST",
@@ -46,8 +46,14 @@ const userApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["myProfile"], 
     }),
   }),
 });
 
-export const { useGetUsersQuery, useUpdateUserMutation, useCreateUserMutation, useGetMyProfileQuery } = userApi;
+export const {
+  useGetUsersQuery,
+  useUpdateUserMutation,
+  useCreateUserMutation,
+  useGetMyProfileQuery,
+} = userApi;

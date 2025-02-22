@@ -70,7 +70,7 @@ const Cart = () => {
     // const orderId = res?.data?.data?.insertedOrder?._id;
 
     if (paymentUrl) {
-      if (paymentUrl === "http://localhost:5173/cart") {
+      if (paymentUrl === "https://bicycle-store-nine-flame.vercel.app/cart") {
         navigate(paymentUrl);
       } else {
         window.location.href = paymentUrl;

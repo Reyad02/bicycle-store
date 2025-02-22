@@ -1,11 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./Hero.css";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Button } from "../../../components/ui/button";
 import { useEffect, useState } from "react";
+import 'swiper/swiper-bundle.css';
 
 interface ISwiperSlide {
   img: string;

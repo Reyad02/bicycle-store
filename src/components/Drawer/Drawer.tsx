@@ -1,16 +1,18 @@
-import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import blackclr from "@/assets/B_rcelle__1_-removebg-preview.png";
 import { Button } from "../ui/button";
 import { logout } from "../../redux/features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { IoIosLogOut } from "react-icons/io";
 
-
 const Drawer = () => {
-  const [productActive, setProductActive] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const isProductActive =
+    location.pathname.includes("/admin/products") ||
+    location.pathname.includes("/admin/add-product");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -60,9 +62,6 @@ const Drawer = () => {
             </li>
             <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white">
               <NavLink
-                onClick={() => {
-                  setProductActive(false);
-                }}
                 end
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "#1C1C1C",
@@ -76,10 +75,10 @@ const Drawer = () => {
               </NavLink>
             </li>
             <li className="w-full ">
-              <details className="">
+              <details open={isProductActive} className="">
                 <summary
                   className={`${
-                    productActive
+                    isProductActive
                       ? "bg-[#0BBA48] text-white font-bold"
                       : "bg-transparent text-[#1C1C1C] font-normal"
                   } hover:bg-[#0BBA48]`}
@@ -89,9 +88,6 @@ const Drawer = () => {
                 <ul className="font-inter">
                   <li className="hover:bg-[#0BBA48] hover:text-white mt-1 rounded-lg">
                     <NavLink
-                      onClick={() => {
-                        setProductActive(true);
-                      }}
                       style={({ isActive }) => ({
                         color: isActive ? "white" : "#1C1C1C",
                         backgroundColor: isActive ? "#0BBA48" : "transparent",
@@ -104,9 +100,6 @@ const Drawer = () => {
                   </li>
                   <li className="hover:bg-[#0BBA48] hover:text-white mt-1 rounded-lg">
                     <NavLink
-                      onClick={() => {
-                        setProductActive(true);
-                      }}
                       to="add-product"
                       style={({ isActive }) => ({
                         color: isActive ? "white" : "#1C1C1C",
@@ -122,9 +115,6 @@ const Drawer = () => {
             </li>
             <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white">
               <NavLink
-                onClick={() => {
-                  setProductActive(false);
-                }}
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "#1C1C1C",
                   backgroundColor: isActive ? "#0BBA48" : "transparent",
@@ -138,9 +128,6 @@ const Drawer = () => {
             </li>
             <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white">
               <NavLink
-                onClick={() => {
-                  setProductActive(false);
-                }}
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "#1C1C1C",
                   backgroundColor: isActive ? "#0BBA48" : "transparent",
@@ -154,9 +141,6 @@ const Drawer = () => {
             </li>
             <li className="w-full rounded-lg hover:bg-[#0BBA48] hover:text-white">
               <NavLink
-                onClick={() => {
-                  setProductActive(false);
-                }}
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "#1C1C1C",
                   backgroundColor: isActive ? "#0BBA48" : "transparent",
@@ -173,13 +157,13 @@ const Drawer = () => {
                 onClick={() => {
                   handleLogout();
                 }}
-                className={"hover:text-white bg-[#0BBA48]" }
+                className={"hover:text-white bg-[#0BBA48]"}
                 to="/login"
               >
-                <IoIosLogOut className="text-base"/>
+                <IoIosLogOut className="text-base" />
                 Logout
               </NavLink>
-            </li>           
+            </li>
           </ul>
         </div>
       </div>
